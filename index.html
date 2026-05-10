@@ -1,0 +1,1644 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Teoría de la Relación Jurídica y Derecho de la Persona · Cátedra B · Programa completo con 9 unidades temáticas del Derecho Civil y Comercial argentino.">
+<meta name="author" content="ReinarhiN">
+<meta name="theme-color" content="#0A0F1E">
+<title>Derecho Civil · Teoría de la Relación Jurídica · Cátedra B</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════
+   DESIGN TOKENS
+═══════════════════════════════════════════════════ */
+:root{
+  --g1:#C9A84C; --g2:#E8C97A; --g3:#8B6914; --g4:#F5DFA0;
+  --n1:#04080F; --n2:#080F1E; --n3:#0D1626; --n4:#122040;
+  --n5:#1A2D52; --n6:#243B6A;
+  --cream:#F5F0E8; --white:#FFFFFF; --muted:#7A8FAD;
+  --border:rgba(201,168,76,.15); --border2:rgba(201,168,76,.35);
+  --red:#C0392B; --teal:#1ABC9C; --blue:#2980B9;
+  --ff-serif:'Playfair Display',Georgia,serif;
+  --ff-sans:'Inter',system-ui,sans-serif;
+  --ff-mono:'JetBrains Mono',monospace;
+  --ease:cubic-bezier(.4,0,.2,1);
+  --ease-back:cubic-bezier(.34,1.56,.64,1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:var(--ff-sans);
+  background:var(--n2);
+  color:var(--cream);
+  overflow-x:hidden;
+  cursor:none;
+  min-height:100vh;
+}
+
+/* ═══════════════════════════════════════════════════
+   CUSTOM CURSOR
+═══════════════════════════════════════════════════ */
+#cdot{
+  position:fixed;top:0;left:0;
+  width:8px;height:8px;
+  background:var(--g1);border-radius:50%;
+  pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);
+  transition:width .18s,height .18s,background .18s;
+  will-change:left,top;
+}
+#cring{
+  position:fixed;top:0;left:0;
+  width:32px;height:32px;
+  border:1.5px solid rgba(201,168,76,.5);
+  border-radius:50%;pointer-events:none;z-index:9998;
+  transform:translate(-50%,-50%);
+  transition:width .3s,height .3s,opacity .3s,left .06s,top .06s;
+  will-change:left,top;
+}
+body.on-link #cdot{width:16px;height:16px;background:var(--g2)}
+body.on-link #cring{width:44px;height:44px;opacity:.3}
+
+/* ═══════════════════════════════════════════════════
+   PARTICLES
+═══════════════════════════════════════════════════ */
+#pts{
+  position:fixed;inset:0;
+  pointer-events:none;z-index:0;overflow:hidden;
+}
+.p{
+  position:absolute;border-radius:50%;
+  background:var(--g1);opacity:0;
+  animation:rise linear infinite;
+}
+@keyframes rise{
+  0%{opacity:0;transform:translateY(100vh) scale(0)}
+  8%{opacity:.45}90%{opacity:.1}
+  100%{opacity:0;transform:translateY(-8vh) scale(1.3)}
+}
+
+/* ═══════════════════════════════════════════════════
+   PROGRESS
+═══════════════════════════════════════════════════ */
+#pgbar{
+  position:fixed;top:0;left:0;right:0;height:2px;z-index:600;
+  background:linear-gradient(90deg,var(--g3),var(--g1),var(--g2));
+  width:0;transition:width .1s linear;
+}
+
+/* ═══════════════════════════════════════════════════
+   TOPBAR / NAV
+═══════════════════════════════════════════════════ */
+#topbar{
+  position:fixed;top:0;left:0;right:0;z-index:400;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.85rem 2.5rem;
+  background:transparent;
+  border-bottom:1px solid transparent;
+  transition:background .35s,border-color .35s,padding .35s;
+}
+#topbar.solid{
+  background:rgba(4,8,15,.96);
+  border-bottom-color:var(--border);
+  backdrop-filter:blur(16px);
+  padding:.65rem 2.5rem;
+}
+.tb-logo{
+  font-family:var(--ff-serif);
+  font-size:1rem;color:var(--g1);
+  letter-spacing:.06em;white-space:nowrap;
+}
+.tb-logo span{color:var(--muted);font-family:var(--ff-sans);font-size:.75rem;font-weight:300}
+.tb-right{display:flex;align-items:center;gap:.6rem}
+.tb-pill{
+  background:transparent;
+  border:1px solid var(--border);
+  color:var(--muted);
+  padding:.3rem .9rem;
+  border-radius:999px;
+  font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;
+  cursor:none;transition:all .25s;
+  font-family:var(--ff-sans);
+}
+.tb-pill:hover,.tb-pill.cur{
+  background:var(--g1);border-color:var(--g1);color:var(--n1);font-weight:600;
+}
+@media(max-width:680px){
+  #topbar{padding:.7rem 1rem}
+  #topbar.solid{padding:.5rem 1rem}
+  .tb-right{gap:.35rem}
+  .tb-pill{padding:.25rem .6rem;font-size:.6rem}
+}
+
+/* ═══════════════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════════════ */
+#hero{
+  position:relative;min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;overflow:hidden;
+  padding:7rem 1.5rem 5rem;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 60%,rgba(18,32,64,.9) 0%,transparent 65%),
+    radial-gradient(ellipse 55% 45% at 85% 25%,rgba(26,45,82,.7) 0%,transparent 60%),
+    var(--n1);
+}
+.hero-grid{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(201,168,76,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(201,168,76,.04) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+.hero-glow{
+  position:absolute;top:30%;left:50%;
+  transform:translate(-50%,-50%);
+  width:600px;height:600px;
+  background:radial-gradient(circle,rgba(201,168,76,.06) 0%,transparent 70%);
+  pointer-events:none;
+  animation:glowPulse 5s ease-in-out infinite;
+}
+@keyframes glowPulse{0%,100%{opacity:.6;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.15)}}
+
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:.7rem;
+  border:1px solid var(--g1);color:var(--g1);
+  font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;
+  padding:.38rem 1.2rem;border-radius:2px;
+  margin-bottom:2rem;
+  opacity:0;animation:fadeUp .9s .1s forwards;
+}
+.hero-eyebrow i{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--g1);animation:blink 1.5s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+
+.hero-title{
+  font-family:var(--ff-serif);
+  font-size:clamp(2.4rem,6vw,5.5rem);
+  font-weight:900;line-height:1.06;color:var(--white);
+  opacity:0;animation:fadeUp 1s .3s forwards;
+}
+.hero-title em{color:var(--g1);font-style:italic;display:block}
+.hero-sub{
+  font-family:var(--ff-serif);
+  font-size:clamp(.95rem,2vw,1.35rem);
+  font-weight:400;font-style:italic;color:var(--muted);
+  margin-top:1rem;
+  opacity:0;animation:fadeUp 1s .55s forwards;
+}
+.hero-meta{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:.8rem;
+  margin-top:1.6rem;
+  opacity:0;animation:fadeUp 1s .75s forwards;
+}
+.hero-chip{
+  background:rgba(201,168,76,.1);border:1px solid var(--border2);
+  color:var(--g2);font-size:.7rem;letter-spacing:.08em;
+  padding:.3rem .8rem;border-radius:999px;
+}
+.hero-cta{
+  display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;
+  margin-top:2.2rem;
+  opacity:0;animation:fadeUp 1s .95s forwards;
+}
+.btn-gold{
+  cursor:none;
+  background:linear-gradient(135deg,var(--g3),var(--g1));
+  border:none;color:var(--n1);
+  padding:.75rem 2rem;border-radius:3px;
+  font-family:var(--ff-sans);font-size:.82rem;
+  font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  transition:all .28s var(--ease-back);
+  position:relative;overflow:hidden;
+}
+.btn-gold::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,var(--g1),var(--g2));
+  opacity:0;transition:opacity .25s;
+}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,168,76,.35)}
+.btn-gold:hover::after{opacity:1}
+.btn-gold span{position:relative;z-index:1}
+.btn-outline{
+  cursor:none;
+  background:transparent;
+  border:1px solid var(--border2);color:var(--g1);
+  padding:.75rem 2rem;border-radius:3px;
+  font-family:var(--ff-sans);font-size:.82rem;
+  font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  transition:all .28s;
+}
+.btn-outline:hover{background:rgba(201,168,76,.08);border-color:var(--g1)}
+.hero-scroll{
+  position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:.4rem;
+  color:var(--muted);font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;
+  opacity:0;animation:fadeIn 1s 1.8s forwards;
+}
+.scroll-bar{width:1px;height:42px;background:linear-gradient(to bottom,var(--g1),transparent);animation:scroll 1.8s ease-in-out infinite}
+@keyframes scroll{0%,100%{opacity:.2}50%{opacity:1}}
+
+/* ═══════════════════════════════════════════════════
+   STATS BAND
+═══════════════════════════════════════════════════ */
+.stats-band{
+  display:flex;flex-wrap:wrap;
+  background:var(--n3);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+}
+.st{
+  flex:1;min-width:120px;
+  padding:1.5rem 1rem;text-align:center;
+  border-right:1px solid var(--border);
+  transition:background .25s;
+}
+.st:last-child{border-right:none}
+.st:hover{background:rgba(201,168,76,.04)}
+.st-n{font-family:var(--ff-serif);font-size:2rem;font-weight:900;color:var(--g1);line-height:1}
+.st-l{font-size:.65rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-top:.3rem}
+
+/* ═══════════════════════════════════════════════════
+   TABS SECTION
+═══════════════════════════════════════════════════ */
+#main-section{position:relative;z-index:1}
+
+.tabs-header{
+  position:sticky;top:48px;z-index:300;
+  background:rgba(4,8,15,.97);
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(20px);
+  overflow-x:auto;
+  scrollbar-width:none;
+}
+.tabs-header::-webkit-scrollbar{display:none}
+
+.tabs-row{
+  display:flex;min-width:max-content;
+  padding:0 1rem;
+}
+.tab-btn{
+  cursor:none;
+  background:none;border:none;
+  color:var(--muted);
+  padding:1rem 1.2rem;
+  font-family:var(--ff-sans);font-size:.72rem;
+  font-weight:500;letter-spacing:.06em;text-transform:uppercase;
+  white-space:nowrap;
+  position:relative;transition:color .25s;
+}
+.tab-btn::after{
+  content:'';position:absolute;
+  bottom:0;left:50%;right:50%;
+  height:2px;background:var(--g1);
+  transition:left .25s var(--ease),right .25s var(--ease);
+}
+.tab-btn:hover{color:var(--g2)}
+.tab-btn.active{color:var(--g1);font-weight:700}
+.tab-btn.active::after{left:1.2rem;right:1.2rem}
+.tab-badge{
+  display:inline-block;
+  background:rgba(201,168,76,.15);
+  color:var(--g1);font-size:.55rem;
+  padding:.1rem .35rem;border-radius:3px;
+  margin-left:.3rem;vertical-align:middle;
+}
+.tab-soon{opacity:.35;font-style:italic}
+
+/* ═══════════════════════════════════════════════════
+   SEARCH BAR
+═══════════════════════════════════════════════════ */
+.search-zone{
+  max-width:640px;margin:2.5rem auto;
+  padding:0 1.5rem;position:relative;
+}
+.srch-wrap{position:relative}
+.srch-ico{
+  position:absolute;left:1.1rem;top:50%;
+  transform:translateY(-50%);
+  color:var(--g1);font-size:1rem;pointer-events:none;
+}
+#srch{
+  width:100%;
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--border);
+  border-radius:4px;
+  padding:.85rem 2.8rem .85rem 3rem;
+  color:var(--cream);
+  font-family:var(--ff-sans);font-size:.88rem;
+  outline:none;
+  transition:border-color .25s,background .25s,box-shadow .25s;
+}
+#srch:focus{
+  border-color:var(--g1);
+  background:rgba(201,168,76,.05);
+  box-shadow:0 0 0 3px rgba(201,168,76,.1);
+}
+#srch::placeholder{color:var(--muted)}
+.srch-clear{
+  position:absolute;right:1.1rem;top:50%;
+  transform:translateY(-50%);
+  background:none;border:none;color:var(--muted);
+  cursor:none;font-size:.85rem;opacity:0;
+  transition:opacity .2s;
+}
+.srch-clear.show{opacity:1}
+#srch-info{
+  text-align:center;font-size:.75rem;color:var(--muted);
+  margin-top:.5rem;min-height:1rem;
+}
+
+/* ═══════════════════════════════════════════════════
+   TAB PANELS
+═══════════════════════════════════════════════════ */
+.panel{display:none;animation:panelIn .4s var(--ease)}
+.panel.active{display:block}
+@keyframes panelIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+.panel-wrap{max-width:1200px;margin:0 auto;padding:0 1.5rem 5rem}
+
+/* ═══════════════════════════════════════════════════
+   PROGRAM PANEL (TAB 0)
+═══════════════════════════════════════════════════ */
+.prog-hero{
+  text-align:center;padding:3.5rem 1rem 2rem;
+  border-bottom:1px solid var(--border);margin-bottom:2.5rem;
+}
+.prog-badge{
+  display:inline-block;
+  background:rgba(201,168,76,.1);border:1px solid var(--border2);
+  color:var(--g2);font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;
+  padding:.3rem .9rem;border-radius:2px;margin-bottom:1rem;
+}
+.prog-title{
+  font-family:var(--ff-serif);
+  font-size:clamp(1.8rem,4vw,3rem);
+  color:var(--white);line-height:1.15;
+}
+.prog-title em{color:var(--g1);font-style:italic}
+.prog-sub{font-size:.9rem;color:var(--muted);margin-top:.7rem}
+
+.prog-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+  gap:1.2rem;
+}
+.prog-card{
+  background:var(--n3);
+  border:1px solid var(--border);
+  border-radius:5px;padding:1.6rem;
+  transition:all .28s;position:relative;overflow:hidden;
+}
+.prog-card::before{
+  content:'';position:absolute;top:0;left:0;
+  width:3px;height:0;
+  background:linear-gradient(to bottom,var(--g2),var(--g3));
+  transition:height .35s;
+}
+.prog-card:hover{background:var(--n4);border-color:var(--border2);transform:translateY(-2px)}
+.prog-card:hover::before{height:100%}
+.pc-num{font-size:.65rem;color:var(--g1);letter-spacing:.18em;text-transform:uppercase;margin-bottom:.5rem;font-weight:600}
+.pc-title{font-family:var(--ff-serif);font-size:1.05rem;color:var(--white);font-weight:700;margin-bottom:.6rem}
+.pc-list{list-style:none;display:flex;flex-direction:column;gap:.35rem}
+.pc-list li{font-size:.8rem;color:var(--muted);padding-left:1rem;position:relative}
+.pc-list li::before{content:'›';position:absolute;left:0;color:var(--g1)}
+.pc-list li strong{color:var(--cream)}
+
+/* ═══════════════════════════════════════════════════
+   UNIT PANEL STRUCTURE
+═══════════════════════════════════════════════════ */
+.unit-banner{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  flex-wrap:wrap;gap:1rem;
+  padding:2.5rem 0 1.5rem;
+  border-bottom:1px solid var(--border);
+  margin-bottom:2rem;
+}
+.ub-left{}
+.ub-num{
+  font-family:var(--ff-serif);
+  font-size:5rem;font-weight:900;
+  color:var(--g1);opacity:.15;line-height:1;
+  margin-bottom:-.5rem;
+}
+.ub-title{font-family:var(--ff-serif);font-size:clamp(1.5rem,3vw,2.3rem);color:var(--white);font-weight:700}
+.ub-sub{font-size:.8rem;color:var(--muted);margin-top:.3rem;letter-spacing:.04em}
+.ub-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.8rem}
+.utag{
+  background:rgba(201,168,76,.1);border:1px solid var(--border2);
+  color:var(--g2);font-size:.62rem;padding:.2rem .55rem;
+  border-radius:2px;letter-spacing:.04em;
+}
+.ub-img{
+  width:160px;height:110px;
+  object-fit:cover;border-radius:4px;
+  border:1px solid var(--border2);
+  opacity:.7;flex-shrink:0;
+}
+
+/* ═══════════════════════════════════════════════════
+   TOPIC ACCORDION
+═══════════════════════════════════════════════════ */
+.topic-acc{
+  border:1px solid var(--border);
+  border-radius:5px;overflow:hidden;
+  margin-bottom:.9rem;
+  transition:border-color .25s,box-shadow .25s;
+}
+.topic-acc:hover{border-color:var(--border2)}
+.topic-acc.open{border-color:rgba(201,168,76,.4);box-shadow:0 4px 32px rgba(0,0,0,.35)}
+
+.acc-hdr{
+  display:flex;align-items:center;gap:1rem;
+  padding:1.1rem 1.4rem;cursor:none;
+  background:var(--n3);
+  transition:background .22s;user-select:none;
+}
+.acc-hdr:hover{background:var(--n4)}
+
+.acc-num{
+  font-family:var(--ff-mono);font-size:.7rem;
+  color:var(--g1);letter-spacing:.05em;
+  min-width:2.8rem;
+}
+.acc-title{
+  font-family:var(--ff-serif);
+  font-size:.98rem;color:var(--white);font-weight:700;flex:1;
+  line-height:1.3;
+}
+.acc-toggle{
+  cursor:none;flex-shrink:0;
+  width:26px;height:26px;border-radius:50%;
+  border:1px solid var(--border);
+  background:transparent;color:var(--g1);
+  font-size:1rem;line-height:1;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .25s;
+}
+.acc-toggle:hover,.topic-acc.open .acc-toggle{background:var(--g1);color:var(--n1);border-color:var(--g1)}
+.topic-acc.open .acc-toggle{transform:rotate(45deg)}
+
+.acc-body{
+  max-height:0;overflow:hidden;
+  transition:max-height .55s var(--ease);
+  background:rgba(255,255,255,.015);
+}
+.topic-acc.open .acc-body{max-height:8000px}
+.acc-inner{padding:1.5rem}
+
+/* Content inside accordion */
+.tc-body{font-size:.83rem;color:var(--muted);line-height:1.8}
+.tc-body strong{color:var(--cream)}
+.tc-body em{color:var(--g2);font-style:italic}
+.tc-body ul{list-style:none;margin:.6rem 0;display:flex;flex-direction:column;gap:.3rem}
+.tc-body ul li{padding-left:1.2rem;position:relative}
+.tc-body ul li::before{content:'▸';position:absolute;left:0;color:var(--g1);font-size:.7rem;top:.15rem}
+
+.info-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:1rem;margin-top:1.2rem;
+}
+.info-box{
+  background:var(--n3);border:1px solid var(--border);
+  border-radius:4px;padding:1.1rem;
+  position:relative;overflow:hidden;
+  transition:all .25s;
+}
+.info-box::before{
+  content:'';position:absolute;top:0;left:0;
+  width:3px;height:0;
+  background:linear-gradient(to bottom,var(--g2),var(--g3));
+  transition:height .3s;
+}
+.info-box:hover{background:var(--n4);border-color:var(--border2)}
+.info-box:hover::before{height:100%}
+.ib-label{font-size:.6rem;color:var(--g1);letter-spacing:.18em;text-transform:uppercase;font-weight:700;margin-bottom:.4rem}
+.ib-text{font-size:.8rem;color:var(--muted);line-height:1.7}
+.ib-text strong{color:var(--cream)}
+
+/* Example box */
+.ex{
+  margin-top:1.2rem;
+  background:rgba(201,168,76,.07);
+  border-left:3px solid var(--g1);
+  border-radius:0 4px 4px 0;
+  padding:1rem 1.2rem;
+}
+.ex-lbl{font-size:.58rem;color:var(--g1);letter-spacing:.22em;text-transform:uppercase;font-weight:700;margin-bottom:.4rem}
+.ex-txt{font-size:.81rem;color:var(--cream);line-height:1.7}
+.ex-txt strong{color:var(--g2)}
+
+/* Image card */
+.img-row{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:1rem;margin-top:1.2rem;
+}
+.img-card{
+  border-radius:4px;overflow:hidden;
+  border:1px solid var(--border);
+  position:relative;
+}
+.img-card img{width:100%;height:130px;object-fit:cover;display:block;transition:transform .4s}
+.img-card:hover img{transform:scale(1.04)}
+.img-cap{
+  padding:.5rem .7rem;
+  background:var(--n3);
+  font-size:.7rem;color:var(--muted);
+}
+
+/* Law tags */
+.ltags{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:1rem}
+.ltag{
+  background:rgba(201,168,76,.09);border:1px solid rgba(201,168,76,.25);
+  color:var(--g2);font-size:.6rem;padding:.15rem .45rem;
+  border-radius:2px;letter-spacing:.04em;font-family:var(--ff-mono);
+}
+
+/* Sub-section divider */
+.sub-div{
+  font-family:var(--ff-serif);font-size:.88rem;color:var(--g1);
+  border-bottom:1px solid var(--border);
+  padding-bottom:.4rem;margin:1.8rem 0 1rem;letter-spacing:.04em;
+}
+
+/* Highlight quote */
+.highlight{
+  background:var(--n4);border:1px solid var(--border2);
+  border-radius:4px;padding:1.2rem 1.5rem;
+  margin:1.2rem 0;
+  font-family:var(--ff-serif);
+  font-size:1.05rem;font-style:italic;color:var(--g2);
+  position:relative;
+}
+.highlight::before{
+  content:'"';position:absolute;top:-.4rem;left:1rem;
+  font-size:3rem;color:var(--g3);font-family:var(--ff-serif);line-height:1;
+}
+
+/* Coming soon placeholder */
+.coming-soon{
+  text-align:center;padding:5rem 2rem;
+  border:1px dashed var(--border);border-radius:8px;
+  margin:2rem 0;
+}
+.cs-icon{font-size:3rem;margin-bottom:1rem;opacity:.5}
+.cs-title{font-family:var(--ff-serif);font-size:1.5rem;color:var(--muted)}
+.cs-sub{font-size:.8rem;color:var(--muted);margin-top:.5rem;opacity:.6}
+
+/* ═══════════════════════════════════════════════════
+   REVEAL
+═══════════════════════════════════════════════════ */
+.rv{opacity:0;transform:translateY(20px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.rv.in{opacity:1;transform:none}
+
+/* ═══════════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════════ */
+footer{
+  text-align:center;padding:3.5rem 2rem;
+  background:var(--n1);
+  border-top:1px solid var(--border);
+  position:relative;z-index:1;
+}
+.ft-logo{font-family:var(--ff-serif);font-size:1.5rem;color:var(--g1);margin-bottom:.5rem}
+.ft-copy{font-size:.8rem;color:var(--muted)}
+.ft-copy strong{color:var(--g1)}
+.ft-links{display:flex;justify-content:center;gap:1.5rem;margin:1rem 0;flex-wrap:wrap}
+.ft-links a{
+  color:var(--muted);text-decoration:none;font-size:.75rem;
+  letter-spacing:.08em;text-transform:uppercase;
+  transition:color .2s;cursor:none;
+}
+.ft-links a:hover{color:var(--g1)}
+.ft-micro{font-size:.65rem;color:rgba(122,143,173,.3);margin-top:.8rem}
+.ft-bar{width:40px;height:1px;background:linear-gradient(90deg,var(--g1),transparent);margin:.8rem auto}
+
+/* ═══════════════════════════════════════════════════
+   UTILITIES
+═══════════════════════════════════════════════════ */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.gold{color:var(--g1)}.italic{font-style:italic}
+.mt1{margin-top:.5rem}.mt2{margin-top:1rem}.mt3{margin-top:1.5rem}
+
+@media(max-width:600px){
+  .info-grid{grid-template-columns:1fr}
+  .prog-grid{grid-template-columns:1fr}
+  .ub-img{display:none}
+  .ub-num{font-size:3rem}
+  .acc-title{font-size:.88rem}
+}
+</style>
+</head>
+<body>
+
+<!-- Cursor -->
+<div id="cdot"></div>
+<div id="cring"></div>
+
+<!-- Particles -->
+<div id="pts"></div>
+
+<!-- Progress -->
+<div id="pgbar"></div>
+
+<!-- ═══════════════════════════════════════════════════
+     TOPBAR
+═══════════════════════════════════════════════════ -->
+<nav id="topbar">
+  <div class="tb-logo">⚖ Teoría de la Relación Jurídica <span>· Cátedra "B"</span></div>
+  <div class="tb-right">
+    <button class="tb-pill cur" id="tbp0" onclick="switchTab(0)">Programa</button>
+    <button class="tb-pill" id="tbp1" onclick="switchTab(1)">U.1</button>
+    <button class="tb-pill" id="tbp2" onclick="switchTab(2)">U.2</button>
+    <button class="tb-pill" id="tbp3" onclick="switchTab(3)">U.3</button>
+    <button class="tb-pill" id="tbp4" onclick="switchTab(4)">U.4</button>
+    <button class="tb-pill" id="tbp5" onclick="switchTab(5)">U.5</button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-eyebrow"><i></i>Argentina · CCyCN · Ley 26.994 · 2026<i></i></div>
+  <h1 class="hero-title">
+    Teoría de la<br>
+    <em>Relación Jurídica</em>
+    y Derecho de la Persona
+  </h1>
+  <p class="hero-sub">Código Civil y Comercial de la Nación &nbsp;·&nbsp; Cátedra "B"</p>
+  <div class="hero-meta">
+    <span class="hero-chip">9 Unidades activas</span>
+    <span class="hero-chip">65+ temas desarrollados</span>
+    <span class="hero-chip">Módulos I – IV</span>
+    <span class="hero-chip">Ejemplos reales</span>
+    <span class="hero-chip">Leyes vigentes 2026</span>
+  </div>
+  <div class="hero-cta">
+    <button class="btn-gold" onclick="switchTab(0);document.getElementById('main-section').scrollIntoView({behavior:'smooth'})"><span>📋 Ver Programa</span></button>
+    <button class="btn-outline" onclick="switchTab(1);document.getElementById('main-section').scrollIntoView({behavior:'smooth'})">Empezar Unidad 1 →</button>
+  </div>
+  <div class="hero-scroll"><div class="scroll-bar"></div><span>Explorar</span></div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     STATS
+═══════════════════════════════════════════════════ -->
+<div class="stats-band rv">
+  <div class="st"><div class="st-n">4</div><div class="st-lbl">Módulos</div></div>
+  <div class="st"><div class="st-n">9</div><div class="st-lbl">Unidades activas</div></div>
+  <div class="st"><div class="st-n">17</div><div class="st-lbl">Unidades totales</div></div>
+  <div class="st"><div class="st-n">65+</div><div class="st-lbl">Temas</div></div>
+  <div class="st"><div class="st-n">50+</div><div class="st-lbl">Artículos CCyCN</div></div>
+  <div class="st"><div class="st-n">2026</div><div class="st-lbl">Actualizado</div></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     TABS NAVIGATION
+═══════════════════════════════════════════════════ -->
+<div id="main-section">
+<div class="tabs-header">
+  <div class="tabs-row">
+    <button class="tab-btn active" id="tab0" onclick="switchTab(0)">📋 Programa</button>
+    <button class="tab-btn" id="tab1" onclick="switchTab(1)">U.1 · Conceptos Fundamentales</button>
+    <button class="tab-btn" id="tab2" onclick="switchTab(2)">U.2 · Fuentes e Interpretación</button>
+    <button class="tab-btn" id="tab3" onclick="switchTab(3)">U.3 · La Persona Humana</button>
+    <button class="tab-btn" id="tab4" onclick="switchTab(4)">U.4 · Derechos Personalísimos</button>
+    <button class="tab-btn" id="tab5" onclick="switchTab(5)">U.5 · Capacidad General</button>
+    <button class="tab-btn" id="tab6" onclick="switchTab(6)">U.6 · Incapaces de Ejercicio</button>
+    <button class="tab-btn" id="tab7" onclick="switchTab(7)">U.7 · Atributos: Nombre, Estado, Domicilio</button>
+    <button class="tab-btn" id="tab8" onclick="switchTab(8)">U.8 · Ausencia y Fallecimiento Presunto</button>
+    <button class="tab-btn" id="tab9" onclick="switchTab(9)">U.9 · Registros y Publicidad</button>
+    <button class="tab-btn tab-soon" id="tab10" onclick="switchTab(10)">U.10 · Próximamente</button>
+    <button class="tab-btn tab-soon" id="tab11" onclick="switchTab(11)">U.11 · Próximamente</button>
+    <button class="tab-btn tab-soon" id="tab12" onclick="switchTab(12)">U.12 · Próximamente</button>
+    <button class="tab-btn tab-soon" id="tab13" onclick="switchTab(13)">U.13 · Próximamente</button>
+    <button class="tab-btn tab-soon" id="tab14" onclick="switchTab(14)">U.14 · Próximamente</button>
+    <button class="tab-btn tab-soon" id="tab15" onclick="switchTab(15)">U.15 · Próximamente</button>
+    <button class="tab-btn tab-soon" id="tab16" onclick="switchTab(16)">U.16 · Próximamente</button>
+    <button class="tab-btn tab-soon" id="tab17" onclick="switchTab(17)">U.17 · Próximamente</button>
+  </div>
+</div>
+
+<!-- SEARCH -->
+<div class="search-zone rv">
+  <div class="srch-wrap">
+    <span class="srch-ico">🔍</span>
+    <input id="srch" type="text" placeholder="Buscar tema, artículo, ley o concepto… (Esc = limpiar)" oninput="doSearch(this.value)" autocomplete="off">
+    <button class="srch-clear" id="srclear" onclick="clearSearch()">✕</button>
+  </div>
+  <div id="srch-info"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     PANEL 0 — PROGRAMA
+═══════════════════════════════════════════════════ -->
+<div class="panel active" id="panel0">
+<div class="panel-wrap">
+
+  <div class="prog-hero rv">
+    <div class="prog-badge">Programa de Estudio · Cátedra "B" · 2026</div>
+    <h2 class="prog-title">Teoría de la <em>Relación Jurídica</em><br>y Derecho de la Persona</h2>
+    <p class="prog-sub">Código Civil y Comercial de la Nación · Ley 26.994 · República Argentina</p>
+  </div>
+
+  <div class="prog-grid rv">
+
+    <div class="prog-card">
+      <div class="pc-num">Módulo I</div>
+      <div class="pc-title">Conceptos Fundamentales</div>
+      <ul class="pc-list">
+        <li><strong>Unidad 1</strong> · Concepto de Derecho, moral, codificación</li>
+        <li><strong>Unidad 2</strong> · Fuentes, interpretación, eficacia temporal</li>
+      </ul>
+    </div>
+
+    <div class="prog-card">
+      <div class="pc-num">Módulo II</div>
+      <div class="pc-title">La Persona Humana</div>
+      <ul class="pc-list">
+        <li><strong>Unidad 3</strong> · Persona humana, nasciturus, genética</li>
+        <li><strong>Unidad 4</strong> · Derechos personalísimos, bioética</li>
+      </ul>
+    </div>
+
+    <div class="prog-card">
+      <div class="pc-num">Módulo III</div>
+      <div class="pc-title">Capacidad</div>
+      <ul class="pc-list">
+        <li><strong>Unidad 5</strong> · Capacidad de derecho y de ejercicio</li>
+        <li><strong>Unidad 6</strong> · Personas incapaces de ejercicio</li>
+      </ul>
+    </div>
+
+    <div class="prog-card">
+      <div class="pc-num">Módulo IV</div>
+      <div class="pc-title">Atributos y Registros</div>
+      <ul class="pc-list">
+        <li><strong>Unidad 7</strong> · Nombre, estado civil, domicilio</li>
+        <li><strong>Unidad 8</strong> · Ausencia y fallecimiento presunto</li>
+        <li><strong>Unidad 9</strong> · Registros, publicidad e información</li>
+      </ul>
+    </div>
+
+    <div class="prog-card" style="opacity:.55;border-style:dashed">
+      <div class="pc-num">Módulos V–IX (Próximamente)</div>
+      <div class="pc-title">Unidades 10 a 17</div>
+      <ul class="pc-list">
+        <li>Contenido en desarrollo</li>
+        <li>Se irá incorporando progresivamente</li>
+      </ul>
+    </div>
+
+    <div class="prog-card">
+      <div class="pc-num">Bibliografía recomendada</div>
+      <div class="pc-title">Recursos clave</div>
+      <ul class="pc-list">
+        <li><strong>CCyCN</strong> · Ley 26.994 (texto oficial)</li>
+        <li><strong>Lorenzetti</strong> · Código Civil y Comercial comentado</li>
+        <li><strong>Rivera / Medina</strong> · Código Civil comentado</li>
+        <li><strong>Borda</strong> · Tratado de Derecho Civil</li>
+        <li><a href="https://www.infojus.gob.ar" target="_blank" style="color:var(--g1)">infojus.gob.ar</a> (legislación)</li>
+        <li><a href="https://www.csjn.gov.ar" target="_blank" style="color:var(--g1)">csjn.gov.ar</a> (jurisprudencia)</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="highlight rv" style="margin-top:2rem">
+    Art. 1 CCyCN: "Los casos que este Código rige deben ser resueltos según las leyes que resulten aplicables, conforme con la Constitución Nacional y los tratados de derechos humanos en los que la República sea parte."
+  </div>
+
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     PANEL 1 — UNIDAD 1
+═══════════════════════════════════════════════════ -->
+<div class="panel" id="panel1">
+<div class="panel-wrap">
+  <div class="unit-banner rv">
+    <div class="ub-left">
+      <div class="ub-num">01</div>
+      <div class="ub-title">Conceptos Fundamentales del Derecho</div>
+      <div class="ub-sub">Derecho · Moral · Codificación · Relación Jurídica · Ejercicio de Derechos</div>
+      <div class="ub-tags">
+        <span class="utag">Módulo I</span>
+        <span class="utag">CCyCN Arts. 1–18</span>
+        <span class="utag">CN art. 75 inc. 22</span>
+        <span class="utag">Ley 26.994</span>
+      </div>
+    </div>
+    <img class="ub-img" src="https://images.unsplash.com/photo-1589994965851-a8f479c573a9?w=400&q=80" alt="Justicia y Derecho">
+  </div>
+
+  <!-- Tema 1.1 -->
+  <div class="topic-acc rv">
+    <div class="acc-hdr" onclick="toggleAcc(this.parentElement)">
+      <div class="acc-num">1.1</div>
+      <div class="acc-title">Concepto de Derecho — Las tres dimensiones del fenómeno jurídico</div>
+      <button class="acc-toggle">+</button>
+    </div>
+    <div class="acc-body"><div class="acc-inner">
+      <div class="tc-body">
+        El Derecho puede analizarse desde <strong>tres dimensiones</strong> que se complementan:
+        <ul>
+          <li><strong>Normológica</strong>: el Derecho como norma (Kelsen, Hart). Estudia la estructura formal de las normas jurídicas. El foco es el sistema normativo válido.</li>
+          <li><strong>Axiológica</strong>: el Derecho como valor. Analiza qué valores persigue el sistema jurídico: justicia, seguridad, bien común. Relacionada con el iusnaturalismo.</li>
+          <li><strong>Dikelógica</strong>: la justicia como fin supremo del Derecho (Cossio). La norma es justa solo si resuelve el caso de modo valioso.</li>
+        </ul>
+        <br>Además se distingue el <em>derecho objetivo</em> (la norma en sí misma: "el Código establece…") del <em>derecho subjetivo</em> (la facultad del individuo: "tengo el derecho a…"). Las ramas del derecho objetivo positivo son: <strong>público</strong> (el Estado actúa con poder coactivo) y <strong>privado</strong> (relaciones entre particulares en pie de igualdad formal). La <em>Unidad del Derecho</em> supera esa distinción: todo el ordenamiento forma un sistema coherente.
+      </div>
+      <div class="info-grid">
+        <div class="info-box">
+          <div class="ib-label">Derecho Natural vs. Positivo</div>
+          <div class="ib-text"><strong>Natural</strong>: principios eternos e inmutables que emanan de la razón o de Dios (Tomás de Aquino). <strong>Positivo</strong>: normas creadas por el hombre mediante los procedimientos establecidos, independientemente de su contenido moral.</div>
+        </div>
+        <div class="info-box">
+          <div class="ib-label">Derecho Público vs. Privado</div>
+          <div class="ib-text"><strong>Público</strong>: el Estado actúa con imperium; normas imperativas. Ej: Derecho Penal, Constitucional, Administrativo. <strong>Privado</strong>: igualdad formal entre partes; normas en gran parte supletorias. Ej: Derecho Civil, Comercial.</div>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-lbl">⚖ Ejemplo real argentino</div>
+        <div class="ex-txt">El art. 1 CCyCN refleja la dimensión normológica (la ley como fuente primaria). El art. 9 (buena fe) refleja la axiológica. Cuando el juez resuelve una disputa de manera equitativa aunque la norma sea ambigua (art. 3 CCyCN), está aplicando la dimensión dikelógica — el fin último de hacer justicia al caso concreto.</div>
+      </div>
+      <div class="ltags"><span class="ltag">Art. 1 CCyCN</span><span class="ltag">Art. 2 CCyCN</span><span class="ltag">Art. 9 CCyCN</span></div>
+    </div></div>
+  </div>
+
+  <!-- Tema 1.2 -->
+  <div class="topic-acc rv">
+    <div class="acc-hdr" onclick="toggleAcc(this.parentElement)">
+      <div class="acc-num">1.2</div>
+      <div class="acc-title">Derecho y Moral — Positivismo e Iusnaturalismo</div>
+      <button class="acc-toggle">+</button>
+    </div>
+    <div class="acc-body"><div class="acc-inner">
+      <div class="tc-body">
+        La relación entre Derecho y Moral es uno de los debates más profundos de la filosofía jurídica.
+        <br><br>
+        El <strong>positivismo jurídico</strong> (Kelsen, Hart) sostiene que el Derecho válido es el creado conforme a los procedimientos formales establecidos, con total independencia de su contenido moral. La validez de la norma no depende de su justicia. El <strong>iusnaturalismo</strong> afirma que existen principios morales superiores que el Derecho positivo no puede contradecir; una ley radicalmente injusta no es Derecho.
+        <br><br>
+        La <strong>fórmula de Radbruch</strong>: "el Derecho extremadamente injusto no es Derecho" — superó al positivismo jurídico luego de los horrores del nazismo. El CCyCN adopta una posición <em>constitucionalizada</em>: los derechos humanos operan como límite material infranqueable al legislador ordinario (art. 1 CCyCN: "conforme la Constitución y los tratados de DDHH").
+      </div>
+      <div class="ex">
+        <div class="ex-lbl">🏛 Ejemplo real — Argentina</div>
+        <div class="ex-txt">Las leyes de "Obediencia Debida" y "Punto Final" de la dictadura (1983-1986) eran normas positivas válidas formalmente. La CSJN en el caso <strong>"Simón" (2005)</strong> las declaró inconstitucionales y de nulidad insanable, aplicando el iusnaturalismo: ninguna ley puede amnistiar crímenes de lesa humanidad. Esta sentencia hizo posible que cientos de genocidas sean juzgados hoy.</div>
+      </div>
+      <div class="ltags"><span class="ltag">CSJN "Simón" 2005</span><span class="ltag">Ley 23.492 (Punto Final)</span><span class="ltag">Art. 36 CN</span></div>
+    </div></div>
+  </div>
+
+  <!-- Tema 1.3 -->
+  <div class="topic-acc rv">
+    <div class="acc-hdr" onclick="toggleAcc(this.parentElement)">
+      <div class="acc-num">1.3</div>
+      <div class="acc-title">Derecho Civil y Comercial — Unificación y Constitucionalización</div>
+      <button class="acc-toggle">+</button>
+    </div>
+    <div class="acc-body"><div class="acc-inner">
+      <div class="tc-body">
+        El Derecho Civil es el <strong>derecho común y residual</strong> de las personas en sus relaciones privadas. Origen en el derecho romano (<em>ius civile</em>). Evolución: del Código Napoleónico (1804) al Código de Vélez Sarsfield (1871, Argentina), hasta el <strong>Código Civil y Comercial de la Nación (CCyCN), Ley 26.994</strong>, vigente desde el <strong>1° de agosto de 2015</strong>.
+        <br><br>
+        La <strong>unificación civil y comercial</strong>: el CCyCN fusionó el Código Civil y el de Comercio. Hoy no hay distinción entre "acto civil" y "acto comercial" — hay actos jurídicos y contratos que se rigen por un único cuerpo normativo.
+        <br><br>
+        La <strong>constitucionalización del Derecho Privado</strong>: los derechos fundamentales (DDHH) irradian todas las relaciones jurídicas privadas. El contrato ya no es solo un acuerdo entre partes: está limitado por los derechos fundamentales, el orden público, la buena fe y la dignidad humana.
+      </div>
+      <div class="info-grid">
+        <div class="info-box">
+          <div class="ib-label">Antes del CCyCN (hasta 2015)</div>
+          <div class="ib-text">Código Civil de Vélez Sarsfield (1871) + Código de Comercio (1889) + cientos de leyes modificatorias. Dos sistemas paralelos con frecuentes contradicciones.</div>
+        </div>
+        <div class="info-box">
+          <div class="ib-label">Con el CCyCN (desde 2015)</div>
+          <div class="ib-text">Un único cuerpo normativo. Incorpora perspectiva de DDHH, igualdad de género, diversidad familiar, bioética y nuevas tecnologías. Arts. 1–2: Constitución + Tratados como fuentes directas.</div>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-lbl">📘 Ejemplo real</div>
+        <div class="ex-txt">Antes de 2015, una compraventa entre comerciantes (Código de Comercio) y entre particulares (Código Civil) tenían reglas distintas sobre vicios redhibitorios. Hoy ambas se rigen por los arts. 1051–1058 CCyCN (saneamiento). Una sola norma, igual para todos.</div>
+      </div>
+      <div class="ltags"><span class="ltag">Ley 26.994</span><span class="ltag">Vigencia: 1/8/2015</span><span class="ltag">Art. 1 CCyCN</span><span class="ltag">Art. 2 CCyCN</span></div>
+    </div></div>
+  </div>
+
+  <!-- Tema 1.4 -->
+  <div class="topic-acc rv">
+    <div class="acc-hdr" onclick="toggleAcc(this.parentElement)">
+      <div class="acc-num">1.4</div>
+      <div class="acc-title">Codificación — Microsistemas y Descodificación</div>
+      <button class="acc-toggle">+</button>
+    </div>
+    <div class="acc-body"><div class="acc-inner">
+      <div class="tc-body">
+        <strong>Codificar</strong> es reunir normas en un sistema orgánico, coherente y completo, con principios propios. Se diferencia de la <em>recopilación</em> (mera reunión sin sistema) y de la <em>consolidación</em> (ordenamiento sin modificación del contenido).
+        <br><br>
+        <strong>Polémica Thiébaut-Savigny (1814)</strong>: Thiébaut (Heidelberg) propuso codificar el derecho alemán. Savigny respondió que el Derecho emana del "espíritu del pueblo" (<em>Volksgeist</em>) y que codificarlo prematuramente lo petrifica. Francia ya había codificado con Napoleón (1804). Esta polémica marcó el pensamiento jurídico del siglo XIX.
+        <br><br>
+        <strong>Descodificación</strong>: proliferación de leyes especiales (<em>microsistemas</em>) fuera del Código — Ley del Consumidor, Ley del Trabajo, Ley de Seguros, etc. Cada microsistema tiene sus propios principios. El CCyCN los integra con <strong>normas integrativas, complementarias y transitorias</strong> (Ley 27.077, arts. 257-259).
+      </div>
+      <div class="ex">
+        <div class="ex-lbl">📚 Ejemplo real</div>
+        <div class="ex-txt">La <strong>Ley 24.240</strong> (Defensa del Consumidor) es un microsistema: tiene sus propios principios (in dubio pro consumidor, art. 3). El art. 1094 CCyCN establece que cuando hay conflicto entre el CCyCN y la ley del consumidor, prevalece la norma más favorable al consumidor. Los microsistemas tienen jerarquía especial frente al código general.</div>
+      </div>
+      <div class="ltags"><span class="ltag">Arts. 257-259 CCyCN</span><span class="ltag">Ley 27.077</span><span class="ltag">Ley 24.240</span><span class="ltag">Art. 1094 CCyCN</span></div>
+    </div></div>
+  </div>
+
+  <!-- Tema 1.5 -->
+  <div class="topic-acc rv">
+    <div class="acc-hdr" onclick="toggleAcc(this.parentElement)">
+      <div class="acc-num">1.5</div>
+      <div class="acc-title">La Relación Jurídica — Sujeto, Objeto, Causa y Clasificación de Derechos</div>
+      <button class="acc-toggle">+</button>
+    </div>
+    <div class="acc-body"><div class="acc-inner">
+      <div class="tc-body">
+        La <strong>relación jurídica</strong> es el vínculo entre dos o más sujetos, reconocido y regulado por el Derecho, que genera derechos y obligaciones. Sus elementos son:
+        <ul>
+          <li><strong>Sujeto activo</strong>: titular del derecho subjetivo.</li>
+          <li><strong>Sujeto pasivo</strong>: sobre quien recae el deber jurídico.</li>
+          <li><strong>Objeto</strong>: la conducta debida o el bien sobre el que recae el derecho.</li>
+          <li><strong>Causa fuente</strong>: el hecho o acto jurídico que origina la relación (contrato, delito, ley).</li>
+        </ul>
+        <br><strong>Clasificación de derechos</strong> (art. 14 CCyCN):
+        <ul>
+          <li><strong>Derechos individuales</strong> (inc. a): se ejercen exclusivamente por su titular. Ej: derecho de propiedad, crédito, nombre.</li>
+          <li><strong>Derechos de incidencia colectiva</strong> (inc. b): interés difuso, colectivo o público. No pertenecen a una sola persona. Legitimación extraordinaria (art. 43 CN). Ej: derechos ambientales, del consumidor en su dimensión colectiva.</li>
+          <li><strong>Derechos de las comunidades indígenas</strong> (art. 18 CCyCN): propiedad comunitaria reconocida; norma primera del art. 9 Ley 26.994.</li>
+        </ul>
+      </div>
+      <div class="ex">
+        <div class="ex-lbl">🌿 Ejemplo real — Caso Mendoza (CSJN, 2008)</div>
+        <div class="ex-txt">La causa <strong>"Mendoza, Beatriz vs. Estado Nacional"</strong> (saneamiento del Riachuelo) fue el primer gran caso de derechos de incidencia colectiva en Argentina. La CSJN reconoció la legitimación activa de los vecinos para demandar colectivamente por daño ambiental. Hoy el Riachuelo tiene plan de saneamiento judicial supervisado — derechos colectivos en acción.</div>
+      </div>
+      <div class="ltags"><span class="ltag">Art. 14 CCyCN</span><span class="ltag">Art. 18 CCyCN</span><span class="ltag">Art. 43 CN</span><span class="ltag">Ley 25.675</span></div>
+    </div></div>
+  </div>
+
+  <!-- Tema 1.6 -->
+  <div class="topic-acc rv">
+    <div class="acc-hdr" onclick="toggleAcc(this.parentElement)">
+      <div class="acc-num">1.6</div>
+      <div class="acc-title">Ejercicio de los Derechos — Buena Fe, Abuso del Derecho, Fraude y Orden Público</div>
+      <button class="acc-toggle">+</button>
+    </div>
+    <div class="acc-body"><div class="acc-inner">
+      <div class="tc-body">
+        <strong>Principio general de buena fe</strong> (art. 9 CCyCN): los derechos deben ejercerse de buena fe. Funciones: a) <em>interpretativa</em> (art. 961: los contratos deben interpretarse de buena fe); b) <em>integradora</em> (art. 991: en las tratativas previas al contrato); c) <em>limitadora</em> (impide el ejercicio desleal de los derechos).
+        <br><br>
+        <strong>Abuso del derecho</strong> (art. 10 CCyCN): el ejercicio de un derecho de manera contraria a sus fines económicos o sociales, o que excede los límites de la buena fe, la moral o las buenas costumbres. El juez debe ordenar lo necesario para evitar o reparar los efectos del ejercicio abusivo. El <em>titular conserva el derecho pero no el modo abusivo de ejercerlo</em>.
+        <br><br>
+        <strong>Abuso de posición dominante</strong> (art. 11): cuando el ejercicio de derechos perjudica a quien está en situación de inferioridad económica o de dependencia. Ej: monopsonio, proveedor único.
+        <br><br>
+        <strong>Fraude a la ley</strong> (art. 12, 2° párr.): acto realizado al amparo de una norma para eludir otra imperativa. El acto se tiene por otorgado conforme a la norma eludida y privado de los efectos buscados.
+        <br><br>
+        <strong>Orden público</strong> (art. 12, 1° párr.): cláusula general de límite al ejercicio de derechos individuales cuando afectan intereses superiores de la comunidad. Las normas de orden público son imperativas e irrenunciables.
+        <br><br>
+        <strong>Legítima defensa, estado de necesidad y ejercicio regular de un derecho</strong> (art. 1718): causales de justificación que excluyen la antijuridicidad del daño causado.
+      </div>
+      <div class="info-grid">
+        <div class="info-box">
+          <div class="ib-label">Ejemplo — Abuso del derecho</div>
+          <div class="ib-text">Un propietario construye un muro altísimo en el límite con su vecino, sin utilidad propia, solo para privarle de luz y vista. Tiene el "derecho" de construir, pero lo ejerce abusivamente. El juez puede ordenar la demolición aunque el muro sea formalmente legal (art. 10 CCyCN).</div>
+        </div>
+        <div class="info-box">
+          <div class="ib-label">Ejemplo — Fraude a la ley</div>
+          <div class="ib-text">Un empleador registra a sus empleados como "monotributistas independientes" para eludir el pago de contribuciones patronales (norma eludida: Ley 20.744). El art. 12 CCyCN y el art. 14 LCT declaran el acto como relación de dependencia encubierta: se aplica la norma imperativa eludida.</div>
+        </div>
+      </div>
+      <div class="ltags"><span class="ltag">Art. 9</span><span class="ltag">Art. 10</span><span class="ltag">Art. 11</span><span class="ltag">Art. 12</span><span class="ltag">Art. 961</span><span class="ltag">Art. 991</span><span class="ltag">Art. 1718</span></div>
+    </div></div>
+  </div>
+
+</div><!-- /panel1 wrap -->
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     PANEL 2 — UNIDAD 2: FUENTES E INTERPRETACIÓN
+═══════════════════════════════════════════════════ -->
+<div class="panel" id="panel2">
+<div class="panel-wrap">
+  <div class="unit-banner rv">
+    <div class="ub-left">
+      <div class="ub-num">02</div>
+      <div class="ub-title">Fuentes del Derecho Privado e Interpretación</div>
+      <div class="ub-sub">Ley · Costumbre · Jurisprudencia · Doctrina · Equidad · Eficacia Temporal · Territorio</div>
+      <div class="ub-tags"><span class="utag">Módulo I</span><span class="utag">Arts. 1–8 CCyCN</span><span class="utag">Art. 7 CCyCN</span><span class="utag">Art. 2537</span></div>
+    </div>
+    <img class="ub-img" src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=400&q=80" alt="Libros de Derecho">
+  </div>
+
+  <div class="topic-acc rv">
+    <div class="acc-hdr" onclick="toggleAcc(this.parentElement)">
+      <div class="acc-num">2.1</div>
+      <div class="acc-title">Fuentes del Derecho Privado — Formales y Materiales</div>
+      <button class="acc-toggle">+</button>
+    </div>
+    <div class="acc-body"><div class="acc-inner">
+      <div class="tc-body">
+        <strong>Fuentes formales</strong>: producen normas jurídicamente obligatorias. Son: la ley, los tratados internacionales, la costumbre jurídica (en sus límites).
+        <br><br>
+        <strong>Fuentes materiales</strong>: influyen en la creación y aplicación del Derecho pero no son vinculantes por sí mismas: jurisprudencia, doctrina, derecho comparado.
+        <br><br>
+        <strong>Jerarquía normativa en Argentina</strong>: a) Constitución Nacional + Tratados con jerarquía constitucional (art. 75 inc. 22 CN). b) Tratados ordinarios ratificados. c) Leyes nacionales. d) Decretos reglamentarios. e) Resoluciones y ordenanzas.
+        <br><br>
+        Los tratados que integran el <strong>bloque de constitucionalidad</strong>: CADH ("Pacto de San José de Costa Rica"), PIDCP, PIDESC, CIDN, CEDAW, CDPD, entre otros.
+      </div>
+      <div class="ex">
+        <div class="ex-lbl">🌐 Ejemplo real</div>
+        <div class="ex-txt">La <strong>CIDN</strong> (Convención Internacional sobre los Derechos del Niño) tiene jerarquía constitucional desde 1994. Su "principio del interés superior del niño" obliga a los jueces argentinos directamente. En el caso "G., M. G." (CSJN, 2012), la Corte aplicó la CIDN para ordenar que un menor permaneciera con su madre biológica aunque el trámite de guarda ya había comenzado con otra familia.</div>
+      </div>
+      <div class="ltags"><span class="ltag">Art. 75 inc. 22 CN</span><span class="ltag">CADH Ley 23.054</span><span class="ltag">CIDN Ley 23.849</span><span class="ltag">CEDAW Ley 23.179</span></div>
+    </div></div>
+  </div>
+
+  <div class="topic-acc rv">
+    <div class="acc-hdr" onclick="toggleAcc(this.parentElement)">
+      <div class="acc-num">2.2</div>
+      <div class="acc-title">La Ley — Formación, Tipos y Principio de Inexcusabilidad</div>
+      <button class="acc-toggle">+</button>
+    </div>
+    <div class="acc-body"><div class="acc-inner">
+      <div class="tc-body">
+        <strong>Formación de la ley</strong>: iniciativa → debate en comisiones → aprobación en ambas cámaras → promulgación por el Ejecutivo → publicación en el Boletín Oficial.
+        <br><br>
+        <strong>Vigencia</strong> (art. 5 CCyCN): si la ley no fija plazo, rige desde el 8° día de su publicación en el Boletín Oficial (<em>vacatio legis</em>).
+        <br><br>
+        <strong>Tipos de normas</strong>:
+        <ul>
+          <li><strong>Imperativas</strong>: no pueden derogarse por voluntad de las partes (ej: normas de capacidad, derechos del trabajador).</li>
+          <li><strong>Supletorias</strong>: rigen en ausencia de acuerdo entre partes (art. 960); las partes pueden apartarse de ellas.</li>
+          <li><strong>Rígidas</strong>: contienen una regla fija sin margen de apreciación judicial.</li>
+          <li><strong>Flexibles</strong>: contienen conceptos indeterminados que el juez debe integrar (ej: "buena fe", "razonabilidad").</li>
+        </ul>
+        <br><strong>Principio de inexcusabilidad</strong> (art. 8 CCyCN): "La ignorancia de las leyes no sirve de excusa para su cumplimiento". Nadie puede alegar que no conocía la ley para evadir sus efectos.
+        <br><br>
+        <strong>Renuncia a la ley</strong>: solo es posible respecto de derechos disponibles y cuando no afecta a terceros ni al orden público (arts. 13, 944 ss., 2535).
+      </div>
+      <div class="ex">
+        <div class="ex-lbl">📰 Ejemplo real</div>
+        <div class="ex-txt">El art. 12 de la Ley 20.744 (LCT) es imperativo: el trabajador no puede renunciar al doble indemnización por despido discriminatorio aunque lo firme voluntariamente. En cambio, el plazo de pago de una locación (art. 1208 CCyCN) es supletorio: las partes pueden acordar otro plazo. Si no lo acuerdan, rige la norma del código.</div>
+      </div>
+      <div class="ltags"><span class="ltag">Art. 5</span><span class="ltag">Art. 8</span><span class="ltag">Art. 13</span><span class="ltag">Art. 960</span><span class="ltag">Art. 944</span><span class="ltag">Art. 2535</span></div>
+    </div></div>
+  </div>
+
+  <div class="topic-acc rv">
+    <div class="acc-hdr" onclick="toggleAcc(this.parentElement)">
+      <div class="acc-num">2.3–2.8</div>
+      <div class="acc-title">Costumbre, Jurisprudencia, Doctrina, Principios Generales y Equidad</div>
+      <button class="acc-toggle">+</button>
+    </div>
+    <div class="acc-body"><div class="acc-inner">
+      <div class="tc-body">
+        <strong>La costumbre</strong>: práctica general, constante, uniforme + <em>opinio iuris</em> (convicción de obligatoriedad). Clases: <em>secundum legem</em> (según la ley), <em>praeter legem</em> (fuera de la ley, llena lagunas) y <em>contra legem</em> (sin fuerza derogatoria en nuestro sistema). El art. 1° CCyCN reconoce los "usos, prácticas y costumbres" como fuente.
+        <br><br>
+        <strong>La jurisprudencia</strong>: el conjunto de fallos reiterados de los tribunales en el mismo sentido. No es formalmente obligatoria en Argentina (salvo fallos del tribunal de casación con carácter vinculante en algunas provincias), pero tiene enorme peso práctico. El sistema del <em>common law</em> (EEUU, Inglaterra, Australia) la reconoce como fuente primaria obligatoria.
+        <br><br>
+        <strong>La doctrina</strong>: opinión científica de los juristas. No es fuente formal pero orienta decisivamente a legisladores y jueces.
+        <br><br>
+        <strong>Los principios generales del Derecho</strong> (art. 2 CCyCN): cuando no existe ley aplicable, el juez debe resolver según los principios y valores jurídicos. Función integradora (llenan lagunas), interpretativa (guían la interpretación de normas oscuras) y limitadora (impiden soluciones contrarias a la justicia).
+        <br><br>
+        <strong>La equidad</strong>: la justicia aplicada al caso concreto. El CCyCN la incorpora expresamente en arts. 332 (lesión), 771 (intereses abusivos), 794 (cláusula penal), 804 (astreintes), 1718 inc. c (estado de necesidad), 1742 (atenuación de la reparación).
+      </div>
+      <div class="ex">
+        <div class="ex-lbl">⚖ Ejemplo real — Equidad</div>
+        <div class="ex-txt">Una empresa fija en un contrato una cláusula penal de $10.000.000 para el caso de incumplimiento mínimo. El deudor incumple un día. El juez, aplicando el art. 794 CCyCN y la equidad, reduce la penalidad a una proporción justa al perjuicio real causado — no puede aplicarse automáticamente una cifra ruinosa por un incumplimiento ínfimo.</div>
+      </div>
+      <div class="ltags"><span class="ltag">Art. 1 CCyCN</span><span class="ltag">Art. 2</span><span class="ltag">Art. 332</span><span class="ltag">Art. 771</span><span class="ltag">Art. 794</span><span class="ltag">Art. 1742</span></div>
+    </div></div>
+  </div>
+
+  <div class="topic-acc rv">
+    <div class="acc-hdr" onclick="toggleAcc(this.parentElement)">
+      <div class="acc-num">2.9–2.10</div>
+      <div class="acc-title">Interpretación del Derecho — Tipos y Métodos</div>
+      <button class="acc-toggle">+</button>
+    </div>
+    <div class="acc-body"><div class="acc-inner">
+      <div class="tc-body">
+        <strong>Tipos de interpretación</strong>:
+        <ul>
+          <li><strong>Legislativa</strong>: la realiza el mismo Poder Legislativo mediante ley interpretativa. Puede ser retroactiva (es la excepción). Normas interpretativas vs. modificatorias.</li>
+          <li><strong>Judicial</strong>: la realizan los jueces al resolver casos. El art. 3 CCyCN establece el <em>deber de resolver</em>: los jueces no pueden negarse a fallar por oscuridad o laguna de la ley (prohibición del <em>non liquet</em>). Límites constitucionales: no pueden crear normas generales.</li>
+          <li><strong>Doctrinaria</strong>: la realizan los juristas en libros y artículos académicos. No es vinculante pero es muy influyente.</li>
+        </ul>
+        <br><strong>Métodos de interpretación</strong>:
+        <ul>
+          <li><strong>Gramatical</strong>: el texto literal de la norma. Punto de partida.</li>
+          <li><strong>Lógico-sistemático</strong>: la norma en su contexto dentro del código o sistema normativo.</li>
+          <li><strong>Histórico</strong>: la voluntad del legislador al momento de sancionarla.</li>
+          <li><strong>Teleológico</strong>: el fin de la norma. Criterio fundamental del CCyCN (art. 2).</li>
+        </ul>
+        <br><strong>Resolución de antinomias</strong>: criterio <em>cronológico</em> (ley posterior deroga anterior), <em>jerárquico</em> (norma superior prevalece), <em>especialidad</em> (ley especial prevalece sobre general). <strong>Ponderación</strong> (Alexy): cuando colisionan principios constitucionales, el juez debe balancear en el caso concreto.
+      </div>
+      <div class="ex">
+        <div class="ex-lbl">🔎 Ejemplo real</div>
+        <div class="ex-txt">Un contrato de distribución de plataformas digitales no estaba regulado en el CCyCN de 2015 (tecnología nueva). Un juez debió resolver un conflicto entre plataforma y distribuidor. Aplicó el art. 3 CCyCN (deber de resolver) + analogía con el contrato de agencia (arts. 1479-1501 CCyCN) + principios generales de buena fe y equidad. Eso es interpretación teleológica e integradora.</div>
+      </div>
+      <div class="ltags"><span class="ltag">Art. 2 CCyCN</span><span class="ltag">Art. 3 CCyCN</span></div>
+    </div></div>
+  </div>
+
+  <div class="topic-acc rv">
+    <div class="acc-hdr" onclick="toggleAcc(this.parentElement)">
+      <div class="acc-num">2.11–2.13</div>
+      <div class="acc-title">Eficacia Temporal de la Ley — Art. 7 y Cómputo de Plazos</div>
+      <button class="acc-toggle">+</button>
+    </div>
+    <div class="acc-body"><div class="acc-inner">
+      <div class="tc-body">
+        <strong>Art. 7 CCyCN — Regla de irretroactividad</strong>:
+        <ul>
+          <li>Las leyes <strong>no tienen efecto retroactivo</strong> como regla, salvo disposición expresa.</li>
+          <li><strong>Aplicación inmediata</strong>: la nueva ley rige las relaciones y situaciones jurídicas en curso a partir de su entrada en vigor.</li>
+          <li>Los <strong>contratos en curso</strong> de ejecución se rigen por la ley vigente al momento de su celebración (principio de seguridad jurídica), salvo excepciones de orden público.</li>
+        </ul>
+        <br><strong>Casos especiales</strong>:
+        <ul>
+          <li>Derecho Penal: retroactividad de la ley más benigna (art. 2 CP, art. 18 CN).</li>
+          <li>Derecho del Consumidor: aplicación inmediata de la ley más favorable.</li>
+        </ul>
+        <br><strong>Modificación de plazos de prescripción</strong> (art. 2537 CCyCN): si el plazo se reduce, se aplica el nuevo plazo contando desde la entrada en vigencia de la ley nueva — salvo que el plazo original venza antes, en cuyo caso se aplica el anterior.
+        <br><br>
+        <strong>Cómputo de intervalos</strong> (art. 6 CCyCN):
+        <ul>
+          <li>Horas: exactas, de momento a momento.</li>
+          <li>Días: completos, de medianoche a medianoche (excluye el día inicial).</li>
+          <li>Meses y años: de fecha a fecha. Si no existe ese día en el mes de vencimiento, el plazo vence el último día del mes.</li>
+          <li>Si el vencimiento cae en día inhábil, se prorroga al siguiente día hábil.</li>
+        </ul>
+      </div>
+      <div class="ex">
+        <div class="ex-lbl">⏳ Ejemplo real — Art. 2537</div>
+        <div class="ex-txt">El CCyCN (vigente 1/8/2015) redujo el plazo general de prescripción de 10 a 5 años. Un crédito nacido en enero 2010 tenía plazo hasta enero 2020 (10 años). Desde el 1/8/2015 rige el nuevo plazo de 5 años. El acreedor debía accionar antes del 1/8/2020 (5 años desde la nueva ley). Si hubiera presentado la demanda el 2/8/2020, el crédito estaba prescripto.</div>
+      </div>
+      <div class="ltags"><span class="ltag">Art. 6 CCyCN</span><span class="ltag">Art. 7 CCyCN</span><span class="ltag">Art. 2537</span><span class="ltag">Art. 963</span><span class="ltag">Art. 1709</span></div>
+    </div></div>
+  </div>
+
+</div></div>
+
+<!-- ═══════════════════════════════════════════════════
+     PANELS 3–9 con estructura completa
+═══════════════════════════════════════════════════ -->
+
+<!-- PANEL 3 — UNIDAD 3 -->
+<div class="panel" id="panel3">
+<div class="panel-wrap">
+  <div class="unit-banner rv">
+    <div class="ub-left">
+      <div class="ub-num">03</div>
+      <div class="ub-title">La Persona Humana</div>
+      <div class="ub-sub">Sujeto · Existencia · Nasciturus · Genética y Derecho · Atributos de la Persona</div>
+      <div class="ub-tags"><span class="utag">Módulo II</span><span class="utag">Arts. 19–50 CCyCN</span><span class="utag">Ley 26.862</span></div>
+    </div>
+    <img class="ub-img" src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400&q=80" alt="Medicina y Derecho">
+  </div>
+  <div class="topic-acc rv"><div class="acc-hdr" onclick="toggleAcc(this.parentElement)"><div class="acc-num">3.1</div><div class="acc-title">El Sujeto de la Relación Jurídica — Persona Humana y Jurídica</div><button class="acc-toggle">+</button></div><div class="acc-body"><div class="acc-inner">
+    <div class="tc-body">El <strong>sujeto</strong> es quien tiene aptitud para ser titular de derechos y obligaciones. El CCyCN clasifica: <strong>a) Persona humana</strong> (art. 19): todo ser humano por el solo hecho de su existencia. <strong>b) Persona jurídica</strong> (art. 141): entes a los que el ordenamiento confiere aptitud para adquirir derechos y contraer obligaciones. Las personas jurídicas se clasifican en públicas (Estado nacional, provincial, municipal, entes autárquicos, CABA) y privadas (SA, SRL, asociaciones, fundaciones, mutuales, cooperativas, consorcios).</div>
+    <div class="ex"><div class="ex-lbl">🏢 Ejemplo real</div><div class="ex-txt">YPF S.A. es persona jurídica pública (Estado con el 51% accionario) que puede ser demandada ante tribunales extranjeros como sucedió en los juicios por la expropiación de 2012 en Nueva York. Tiene patrimonio propio separado del Estado argentino.</div></div>
+    <div class="ltags"><span class="ltag">Art. 19</span><span class="ltag">Art. 141</span><span class="ltag">Art. 146</span><span class="ltag">Art. 148</span></div>
+  </div></div></div>
+
+  <div class="topic-acc rv"><div class="acc-hdr" onclick="toggleAcc(this.parentElement)"><div class="acc-num">3.2</div><div class="acc-title">Persona Humana — Valor, Igualdad Civil y Evolución Histórica</div><button class="acc-toggle">+</button></div><div class="acc-body"><div class="acc-inner">
+    <div class="tc-body">El CCyCN consagra la <strong>inviolabilidad de la persona humana</strong> (art. 51): en ningún caso puede ser objeto de tratos crueles, inhumanos o degradantes. El ser humano es siempre un fin en sí mismo, nunca un medio. <strong>Igualdad civil</strong> (art. 22): toda persona humana goza de la aptitud para ser titular de derechos y deberes jurídicos, sin discriminación alguna. Evolución histórica: esclavitud (Roma), servidumbre (Edad Media), capacidad diferenciada por género (s. XIX) → igualdad plena (s. XX-XXI).</div>
+    <div class="ex"><div class="ex-lbl">🌍 Ejemplo real</div><div class="ex-txt">El art. 15 de la CN de 1853 abolió la esclavitud ("En la Nación Argentina no hay esclavos"). El CCyCN refuerza esto: el art. 51 prohíbe cualquier forma de instrumentalización del ser humano. En 2026, los jueces argentinos aplican estas normas en casos de trata de personas para reconocer la nulidad de cualquier "contrato" entre tratantes y víctimas.</div></div>
+    <div class="ltags"><span class="ltag">Art. 22</span><span class="ltag">Art. 51</span><span class="ltag">Art. 15 CN</span></div>
+  </div></div></div>
+
+  <div class="topic-acc rv"><div class="acc-hdr" onclick="toggleAcc(this.parentElement)"><div class="acc-num">3.3</div><div class="acc-title">Comienzo de la Existencia — El Nasciturus</div><button class="acc-toggle">+</button></div><div class="acc-body"><div class="acc-inner">
+    <div class="tc-body"><strong>Art. 19 CCyCN</strong>: "La existencia de la persona humana comienza con la concepción." El nasciturus (concebido no nacido) tiene capacidad de derecho condicional: si nace con vida, consolida retroactivamente los derechos adquiridos durante la gestación; si nace muerto, se tiene por no existido (art. 21). <strong>Época de la concepción</strong> (art. 20): período entre el máximo (300 días) y mínimo (180 días) anteriores al nacimiento — presunción iuris tantum. Duración del embarazo relevante para determinar paternidad y derechos hereditarios.</div>
+    <div class="ex"><div class="ex-lbl">👶 Ejemplo real</div><div class="ex-txt">El padre fallece en un accidente cuando su esposa está embarazada de 5 meses. El nasciturus ya fue concebido: tiene capacidad condicional para heredar. El juez designa un curador especial para representarlo durante el proceso sucesorio. Si nace vivo, recibe su porción hereditaria con retroactividad al momento de la muerte del padre.</div></div>
+    <div class="ltags"><span class="ltag">Art. 19</span><span class="ltag">Art. 20</span><span class="ltag">Art. 21</span><span class="ltag">Art. 101 inc. a</span></div>
+  </div></div></div>
+
+  <div class="topic-acc rv"><div class="acc-hdr" onclick="toggleAcc(this.parentElement)"><div class="acc-num">3.4</div><div class="acc-title">Genética y Derecho — Reproducción Humana Asistida</div><button class="acc-toggle">+</button></div><div class="acc-body"><div class="acc-inner">
+    <div class="tc-body">Técnicas de reproducción humana asistida (TRHA): inseminación artificial, FIV, GIFT. <strong>Ley 26.862</strong> (2013): acceso igualitario a las TRHA; cobertura obligatoria por obras sociales y prepagas (hasta 4 tratamientos anuales); donación de gametos. <strong>Naturaleza jurídica del embrión no implantado</strong>: la norma transitoria 2ª (Ley 26.994) difirió su regulación a una ley especial aún no sancionada. La Corte IDH en "Artavia Murillo vs. Costa Rica" (2012) sostuvo que el embrión no es "persona" en el sentido convencional antes de la implantación. <strong>Filiación por TRHA</strong>: la voluntad procreacional determina la filiación (art. 562 CCyCN) — no el vínculo genético.</div>
+    <div class="ex"><div class="ex-lbl">🔬 Ejemplo real</div><div class="ex-txt">Una pareja del mismo sexo usa TRHA con gametos donados. El art. 558 CCyCN permite que ambas madres figuren en la partida de nacimiento desde el inicio (no se necesita adopción). La voluntad procreacional documentada en el consentimiento informado es la fuente de la filiación, independientemente de quién aportó el óvulo o gestó.</div></div>
+    <div class="ltags"><span class="ltag">Ley 26.862</span><span class="ltag">Dec. 956/2013</span><span class="ltag">Art. 558</span><span class="ltag">Art. 560</span><span class="ltag">Art. 562</span></div>
+  </div></div></div>
+
+  <div class="topic-acc rv"><div class="acc-hdr" onclick="toggleAcc(this.parentElement)"><div class="acc-num">3.5–3.6</div><div class="acc-title">Persona Nacida con Vida y Atributos de la Persona</div><button class="acc-toggle">+</button></div><div class="acc-body"><div class="acc-inner">
+    <div class="tc-body"><strong>Presunción iuris tantum</strong> (art. 21): si hubiere dudas sobre si nació vivo o muerto, se presume que nació vivo. <strong>Nacimiento sin vida</strong>: los derechos adquiridos quedan sin efecto (retroactivamente). Inscripción (Ley 26.413, art. 66). <strong>Atributos de la persona</strong>: cualidades jurídicas inherentes a toda persona. Caracteres: <em>necesarios, únicos, inalienables, imprescriptibles, innatos, vitalicios</em>. Atributos de la persona humana: <strong>nombre, capacidad, domicilio y estado</strong>. Diferencia con los derechos de la personalidad: los atributos son la cualidad jurídica; los derechos personalísimos son los derechos subjetivos que emanan de la dignidad de la persona.</div>
+    <div class="ex"><div class="ex-lbl">🪪 Ejemplo real</div><div class="ex-txt">Un artista famoso quiere "vender" su nombre para que una empresa lo use como marca. El nombre es inalienable (art. 62 CCyCN) — no puede transferirse. Puede otorgar una licencia de uso (autorizar que lo usen), pero eso no transfiere el atributo: puede revocar esa autorización cuando quiera, aunque genere responsabilidad contractual.</div></div>
+    <div class="ltags"><span class="ltag">Art. 21</span><span class="ltag">Art. 62</span><span class="ltag">Ley 26.413 art. 66</span></div>
+  </div></div></div>
+</div></div>
+
+<!-- PANEL 4 — UNIDAD 4 -->
+<div class="panel" id="panel4">
+<div class="panel-wrap">
+  <div class="unit-banner rv">
+    <div class="ub-left">
+      <div class="ub-num">04</div>
+      <div class="ub-title">Derechos Personalísimos y Bioética</div>
+      <div class="ub-sub">Vida · Integridad · Imagen · Honor · Intimidad · Identidad · No Discriminación · Bioética</div>
+      <div class="ub-tags"><span class="utag">Módulo II</span><span class="utag">Arts. 51–61 CCyCN</span><span class="utag">Ley 27.447</span><span class="utag">Ley 26.529</span></div>
+    </div>
+    <img class="ub-img" src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=400&q=80" alt="Derechos Humanos">
+  </div>
+
+  <div class="topic-acc rv"><div class="acc-hdr" onclick="toggleAcc(this.parentElement)"><div class="acc-num">4.1</div><div class="acc-title">Derechos Personalísimos — Concepto, Caracteres y Disposición</div><button class="acc-toggle">+</button></div><div class="acc-body"><div class="acc-inner">
+    <div class="tc-body">Los derechos personalísimos son derechos subjetivos de naturaleza extrapatrimonial, inherentes a la persona humana, que protegen su esencia. Incorporados por primera vez a la codificación argentina en el CCyCN (2015). Caracteres: innatos, vitalicios, necesarios, extrapatrimoniales, relativos en su ejercicio. <strong>Dignidad e inviolabilidad</strong> (art. 51): en ningún caso puede ser objeto de tratos crueles, inhumanos o degradantes. <strong>Afectaciones a la dignidad</strong> (art. 52): el afectado puede pedir prevención, cese y reparación. <strong>Disposición</strong> (art. 55): los actos de disposición son válidos si no son contrarios a la ley, la moral o las buenas costumbres, y <em>son revocables</em>.</div>
+    <div class="ex"><div class="ex-lbl">🛡 Ejemplo real</div><div class="ex-txt">Una persona firma un contrato con una productora autorizando la filmación de su vida para un documental. Luego se arrepiente y revoca el consentimiento (art. 55 CCyCN). La revocación es válida aunque genere responsabilidad contractual. Los derechos personalísimos siempre son revocables — el dinero no puede "comprar" la dignidad de una persona.</div></div>
+    <div class="ltags"><span class="ltag">Art. 51</span><span class="ltag">Art. 52</span><span class="ltag">Art. 55</span></div>
+  </div></div></div>
+
+  <div class="topic-acc rv"><div class="acc-hdr" onclick="toggleAcc(this.parentElement)"><div class="acc-num">4.2</div><div class="acc-title">Derecho a la Vida — Muerte Digna y Derechos del Paciente</div><button class="acc-toggle">+</button></div><div class="acc-body"><div class="acc-inner">
+    <div class="tc-body"><strong>Ley 26.742</strong> (Muerte Digna, 2012): el paciente puede rechazar tratamientos que prolonguen artificialmente su vida sin expectativa de recuperación. <strong>Ley 26.529</strong> (Derechos del Paciente): 1) Derecho a la información sanitaria; 2) Consentimiento informado (previo, libre e informado); 3) Historia clínica (es del paciente); 4) Directivas médicas anticipadas (art. 60 CCyCN): instrucciones escritas para caso de incapacidad futura. El médico que las incumple puede ser responsable civil y penalmente. <strong>Rechazo de tratamientos</strong>: el paciente puede negarse a cualquier tratamiento aunque esto implique su muerte. Solo se requiere una "manifestación indubitable" de su voluntad.</div>
+    <div class="ex"><div class="ex-lbl">💊 Ejemplo real — Caso Albarracini (CSJN, 2012)</div><div class="ex-txt">Un Testigo de Jehová accidentado rechazó transfusiones de sangre por razones religiosas, pese a que su vida estaba en riesgo. La CSJN aplicó la Ley 26.529 y reconoció el derecho del paciente adulto y capaz a rechazar tratamientos, aunque impliquen su muerte. La autonomía del paciente prevalece sobre el criterio médico.</div></div>
+    <div class="ltags"><span class="ltag">Ley 26.742</span><span class="ltag">Ley 26.529</span><span class="ltag">Art. 60 CCyCN</span></div>
+  </div></div></div>
+
+  <div class="topic-acc rv"><div class="acc-hdr" onclick="toggleAcc(this.parentElement)"><div class="acc-num">4.3</div><div class="acc-title">Integridad Corporal — Cuerpo, Trasplantes y Prácticas Prohibidas</div><button class="acc-toggle">+</button></div><div class="acc-body"><div class="acc-inner">
+    <div class="tc-body"><strong>El cuerpo humano</strong> (art. 17 CCyCN): no tiene valor económico sino afectivo, terapéutico, científico, humanitario o social. Las partes separadas del cuerpo quedan fuera del comercio. <strong>Actos de disposición</strong> (art. 56): válidos si no generan disminución permanente y no son contrarios a la ley. <strong>Prácticas prohibidas</strong> (art. 57): toda práctica destinada a producir alteración genética transmisible a la descendencia. <strong>Consentimiento informado</strong> (art. 59 + Ley 26.529): previo, libre, específico, informado y revocable. <strong>Directivas médicas anticipadas</strong> (art. 60). <strong>Cadáver</strong> (art. 61): exequias según voluntad del difunto o usos. <strong>Trasplante de órganos</strong> (Ley 27.447, "Ley Justina", 2018): sistema de opt-out — todos somos donantes salvo manifestación expresa en contrario ante el Registro Nacional. <strong>Prácticas esterilizantes</strong> (Ley 26.130): ligadura de trompas y vasectomía son derechos del paciente, sin autorización judicial ni conyugal.</div>
+    <div class="ex"><div class="ex-lbl">❤ Ejemplo real — Ley Justina</div><div class="ex-txt">Justina Lo Cane murió a los 12 años en 2017 esperando un trasplante de corazón. Su padre Ricardo llevó adelante una campaña que logró en 2018 la sanción de la Ley 27.447: todos los argentinos somos donantes automáticamente. Esta ley triplicó la cantidad de donantes en Argentina. En 2026 sigue siendo un modelo para el mundo.</div></div>
+    <div class="ltags"><span class="ltag">Art. 17</span><span class="ltag">Art. 56</span><span class="ltag">Art. 57</span><span class="ltag">Art. 59</span><span class="ltag">Art. 60</span><span class="ltag">Art. 61</span><span class="ltag">Ley 27.447</span><span class="ltag">Ley 26.130</span></div>
+  </div></div></div>
+
+  <div class="topic-acc rv"><div class="acc-hdr" onclick="toggleAcc(this.parentElement)"><div class="acc-num">4.4</div><div class="acc-title">Imagen, Honor, Vida Privada, Identidad y No Discriminación</div><button class="acc-toggle">+</button></div><div class="acc-body"><div class="acc-inner">
+    <div class="tc-body"><strong>Derecho a la imagen</strong> (art. 53): nadie puede captar, reproducir o publicar la imagen sin consentimiento. Excepciones: personas públicas en actos públicos, interés informativo legítimo. <strong>Honor</strong>: subjetivo (autoestima) y objetivo (reputación). <strong>Vida privada e intimidad</strong> (art. 1770): el que arbitrariamente se entromete en la vida ajena responde por el daño causado. <strong>Acusación calumniosa</strong> (art. 1771). <strong>Habeas data</strong> (art. 43 CN): acción para conocer, rectificar y actualizar datos en registros públicos o privados. <strong>Ley 25.326</strong> de Protección de Datos Personales. <strong>Derecho a la identidad</strong>: identidad estática (quién soy) y dinámica (mi proyecto de vida). <strong>No discriminación</strong> (Ley 23.592): nulidad del acto + cese + daño moral + eventual daño punitivo.</div>
+    <div class="ex"><div class="ex-lbl">📸 Ejemplo real</div><div class="ex-txt">En 2025, una empresa de inteligencia artificial usó fotos de Instagram de miles de argentinos para entrenar sus modelos sin consentimiento. El AAIP (Agencia de Acceso a la Información Pública) aplicó la Ley 25.326 e inició investigaciones. Cada usuario afectado puede ejercer el habeas data (art. 43 CN) para exigir que sus datos sean eliminados del sistema de entrenamiento.</div></div>
+    <div class="ltags"><span class="ltag">Art. 53</span><span class="ltag">Art. 1770</span><span class="ltag">Art. 1771</span><span class="ltag">Art. 43 CN</span><span class="ltag">Ley 25.326</span><span class="ltag">Ley 23.592</span></div>
+  </div></div></div>
+
+  <div class="topic-acc rv"><div class="acc-hdr" onclick="toggleAcc(this.parentElement)"><div class="acc-num">4.5</div><div class="acc-title">Bioética — Principios, Ámbito y Relación con los Derechos Personalísimos</div><button class="acc-toggle">+</button></div><div class="acc-body"><div class="acc-inner">
+    <div class="tc-body"><strong>Bioética</strong>: disciplina que estudia los problemas morales que surgen de la ciencia y la medicina. Principios de Beauchamp y Childress: <em>autonomía</em> (respetar la decisión del paciente), <em>beneficencia</em> (hacer el bien), <em>no maleficencia</em> (primum non nocere), <em>justicia</em> (distribución equitativa). Ámbito: eutanasia, aborto, manipulación genética, clonación, edición genética (CRISPR-Cas9), inteligencia artificial en medicina, ensayos clínicos, comercialización de órganos. <strong>Art. 57 CCyCN</strong>: prohíbe toda práctica destinada a producir una alteración genética del embrión transmisible a la descendencia. <strong>Ley 27.306</strong>: regulación de la investigación con seres humanos.</div>
+    <div class="ex"><div class="ex-lbl">🧬 Ejemplo real</div><div class="ex-txt">En 2023, en Argentina se aprobó el uso compasivo de terapias génicas para enfermedades raras. Un niño con AME (atrofia muscular espinal) recibió la terapia Zolgensma ($2M USD). La bioética plantea: ¿debe el Estado garantizar tratamientos de costo prohibitivo? Los arts. 1 y 2 CCyCN + el derecho a la vida + el principio de justicia distributiva obligan a los jueces a ponderar estos casos.</div></div>
+    <div class="ltags"><span class="ltag">Art. 57 CCyCN</span><span class="ltag">Ley 27.306</span><span class="ltag">Convenio de Oviedo</span><span class="ltag">Dec. ANMAT</span></div>
+  </div></div></div>
+</div></div>
+
+<!-- PANEL 5 — UNIDAD 5 -->
+<div class="panel" id="panel5">
+<div class="panel-wrap">
+  <div class="unit-banner rv">
+    <div class="ub-left">
+      <div class="ub-num">05</div>
+      <div class="ub-title">Capacidad en General</div>
+      <div class="ub-sub">Capacidad de Derecho · Capacidad de Ejercicio · Discernimiento · Protección Legal</div>
+      <div class="ub-tags"><span class="utag">Módulo III</span><span class="utag">Arts. 22–50 CCyCN</span><span class="utag">CDPD Ley 26.378</span></div>
+    </div>
+    <img class="ub-img" src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=400&q=80" alt="Capacidad Jurídica">
+  </div>
+
+  <div class="topic-acc rv"><div class="acc-hdr" onclick="toggleAcc(this.parentElement)"><div class="acc-num">5.1</div><div class="acc-title">Capacidad — Concepto, Clases y Marco Constitucional</div><button class="acc-toggle">+</button></div><div class="acc-body"><div class="acc-inner">
+    <div class="tc-body">La <strong>capacidad</strong> es el atributo jurídico que mide la aptitud de una persona para ser titular de derechos (<em>de derecho</em>) y para ejercerlos por sí misma (<em>de ejercicio</em>). La capacidad civil (CCyCN) se distingue de la política (sufragio activo desde los 16 años, pasivo según cargo). <strong>Igualdad ante la ley</strong> en ambas capacidades. Marco supraconstitucional: CADH (Ley 23.054), CIDN (Ley 23.849), CEDAW (Ley 23.179), CDPD (Ley 26.378), Convención Interamericana (Ley 25.280). La <strong>CDPD</strong> exige reemplazar el modelo de sustitución de voluntad por uno de apoyos. <strong>Capacidad progresiva del menor</strong>: a mayor madurez → más derechos de ejercicio (art. 26 CCyCN + Ley 26.061).</div>
+    <div class="ex"><div class="ex-lbl">⚖ Ejemplo real</div><div class="ex-txt">En 2026, un joven de 16 años puede votar en elecciones presidenciales (Ley 26.774). Tiene plena capacidad política activa. Sin embargo, para vender un inmueble heredado necesita autorización judicial (art. 28 CCyCN) — su capacidad civil de ejercicio es progresiva: máxima en lo personal, restringida para disposición de bienes.</div></div>
+    <div class="ltags"><span class="ltag">Art. 22–26 CCyCN</span><span class="ltag">Ley 26.378 (CDPD)</span><span class="ltag">Ley 26.774</span><span class="ltag">Ley 26.061</span></div>
+  </div></div></div>
+
+  <div class="topic-acc rv"><div class="acc-hdr" onclick="toggleAcc(this.parentElement)"><div class="acc-num">5.2–5.3</div><div class="acc-title">Capacidad de Derecho y Privaciones / Legitimación</div><button class="acc-toggle">+</button></div><div class="acc-body"><div class="acc-inner">
+    <div class="tc-body"><strong>Capacidad de derecho</strong> (art. 22): aptitud para ser titular de derechos y deberes. Toda persona la tiene desde su existencia. No admite incapacidad absoluta: sería negar la condición de persona. <strong>Privaciones a la capacidad de derecho</strong> (arts. 1001, 1002, 2482): la ley priva de capacidad para ciertos actos en razón de la función o relación del sujeto, para proteger a terceros o al interés público — no para proteger al propio incapaz. <strong>Diferencia fundamental con la falta de legitimación</strong>: la legitimación es la aptitud para un acto concreto en relación a determinados bienes o personas; la capacidad es la aptitud jurídica genérica. Un incapaz de derecho para un acto puede ser plenamente capaz para todos los demás.</div>
+    <div class="ex"><div class="ex-lbl">🚫 Ejemplo real</div><div class="ex-txt">El art. 1002 inc. a CCyCN: los funcionarios públicos no pueden contratar en interés propio respecto de los bienes cuya administración o enajenación está a su cargo. El ministro de economía no puede comprar los bonos que él mismo emite. No es incapaz para contratar en general: puede comprar una casa, un auto, etc. Es una privación de capacidad de derecho específica para evitar conflictos de intereses.</div></div>
+    <div class="ltags"><span class="ltag">Art. 22</span><span class="ltag">Art. 1001</span><span class="ltag">Art. 1002</span><span class="ltag">Art. 2482</span></div>
+  </div></div></div>
+
+  <div class="topic-acc rv"><div class="acc-hdr" onclick="toggleAcc(this.parentElement)"><div class="acc-num">5.4–5.6</div><div class="acc-title">Capacidad de Ejercicio, Incapacidad y Discernimiento</div><button class="acc-toggle">+</button></div><div class="acc-body"><div class="acc-inner">
+    <div class="tc-body"><strong>Capacidad de ejercicio</strong> (art. 23): aptitud para ejercer por sí mismo los derechos de los que se es titular. Presunción de capacidad plena a los 18 años. <strong>Incapaces de ejercicio</strong> (art. 24): a) personas por nacer; b) menores sin madurez suficiente; c) declarados incapaces por sentencia judicial. <strong>Contraposición</strong>: la incapacidad de ejercicio protege al propio incapaz (suple su voluntad con representación); la privación de capacidad de derecho protege a terceros o al orden público. <strong>Discernimiento</strong> (art. 260): aptitud mental para conocer y comprender el acto realizado. Causas obstativas (art. 261): a) privación accidental (ebriedad, hipnosis, shock); b) acto ilícito del menor de 10 años; c) acto lícito del menor de 13 años. El acto sin discernimiento puede anularse por vicio de la voluntad.</div>
+    <div class="ex"><div class="ex-lbl">🧠 Ejemplo real</div><div class="ex-txt">Un ejecutivo firma un contrato millonario luego de que sus socios lo embriagaron para obtener su firma. Aunque es mayor de 18 (capaz), actuó sin discernimiento — privación accidental (art. 261 inc. a CCyCN). El contrato puede anularse por vicio de la voluntad. Los socios pueden responder penalmente por fraude.</div></div>
+    <div class="ltags"><span class="ltag">Art. 23</span><span class="ltag">Art. 24</span><span class="ltag">Art. 260</span><span class="ltag">Art. 261</span></div>
+  </div></div></div>
+
+  <div class="topic-acc rv"><div class="acc-hdr" onclick="toggleAcc(this.parentElement)"><div class="acc-num">5.7–5.9</div><div class="acc-title">Evolución de la Capacidad de la Mujer y Protección Legal de los Incapaces</div><button class="acc-toggle">+</button></div><div class="acc-body"><div class="acc-inner">
+    <div class="tc-body"><strong>Evolución histórica</strong>: hasta 1926 (Ley 11.357), la mujer casada era relativamente incapaz (necesitaba autorización del marido). Hasta 1968 (Ley 17.711): capacidad civil plena pero desigualdad en el ejercicio. CCyCN 2015: igualdad absoluta. <strong>Protección legal de los incapaces</strong>: <em>Representación necesaria</em> (art. 101): padres, tutores, curadores. Nómina. Funciones. <em>Ministerio Público</em> (art. 103): a) Judicial (complementario o principal); b) Extrajudicial. <em>Asistencia</em> (art. 102): los apoyos asisten, no sustituyen. <em>Sistemas de apoyo al ejercicio de la capacidad</em> (art. 43): designados judicialmente o elegidos por la persona. <em>Nulidad, no restitución</em> (art. 1000). <em>Suspensión de prescripción</em> (art. 2543 inc. c). Organismos administrativos (Ley 26.061, SENAF).</div>
+    <div class="ex"><div class="ex-lbl">👩‍⚖️ Ejemplo real</div><div class="ex-txt">Hasta 1968, una mujer argentina casada necesitaba autorización de su marido para trabajar en relación de dependencia (art. 55 del viejo Código Civil). Hoy, la Ley 26.485 (2009, Violencia contra la Mujer) permite al juez excluir al agresor del hogar conyugal aunque sea propietario del inmueble — el derecho de propiedad cede ante la protección de la integridad de la mujer.</div></div>
+    <div class="ltags"><span class="ltag">Art. 101</span><span class="ltag">Art. 102</span><span class="ltag">Art. 103</span><span class="ltag">Art. 43</span><span class="ltag">Art. 1000</span><span class="ltag">Art. 2543</span><span class="ltag">Ley 26.061</span><span class="ltag">Ley 26.485</span></div>
+  </div></div></div>
+</div></div>
+
+<!-- PANEL 6 — UNIDAD 6 -->
+<div class="panel" id="panel6">
+<div class="panel-wrap">
+  <div class="unit-banner rv">
+    <div class="ub-left">
+      <div class="ub-num">06</div>
+      <div class="ub-title">Personas Incapaces de Ejercicio</div>
+      <div class="ub-sub">Menores · Emancipación · Capacidad Restringida · Declaración Judicial · El Inhabilitado</div>
+      <div class="ub-tags"><span class="utag">Módulo III</span><span class="utag">Arts. 24–50 CCyCN</span><span class="utag">Ley 26.657</span><span class="utag">CDPD</span></div>
+    </div>
+    <img class="ub-img" src="https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?w=400&q=80" alt="Protección de personas">
+  </div>
+
+  <div class="topic-acc rv"><div class="acc-hdr" onclick="toggleAcc(this.parentElement)"><div class="acc-num">6.1</div><div class="acc-title">Personas por Nacer y Menor de Edad — Capacidad Progresiva</div><button class="acc-toggle">+</button></div><div class="acc-body"><div class="acc-inner">
+    <div class="tc-body"><strong>Personas por nacer</strong> (art. 24 inc. a): incapaces de ejercicio; representados por sus padres. El embrión no implantado: capacidad relativa y condicional. <strong>Menores de edad</strong> (art. 24 inc. b): incapaces de ejercicio como regla. Sistema de <strong>capacidad progresiva</strong> (art. 26): <ul><li>Menores de 13: representados por sus progenitores en todos los actos.</li><li>13 a 16 años (adolescentes): pueden tomar decisiones sobre su persona que no sean perjudiciales; consentir tratamientos no invasivos; consentir tratamientos invasivos solo con asistencia de los progenitores.</li><li>Desde los 16 años: se presumen adultos para decidir sobre su propio cuerpo (art. 26 3° párr.).</li></ul><strong>Derecho a ser oído</strong>: en todo proceso que afecte al menor (CIDN, art. 12; Ley 26.061, art. 27).</div>
+    <div class="ex"><div class="ex-lbl">🧒 Ejemplo real</div><div class="ex-txt">Una chica de 15 años quiere iniciar tratamiento hormonal de afirmación de género. Sus padres se oponen. El art. 26 CCyCN + Ley 26.743 + Ley 26.061: el juez debe escuchar a la adolescente, ponderar su madurez y decidir si el tratamiento responde a su interés superior. En varias sentencias argentinas de 2023-2025, los jueces autorizaron el tratamiento contra la oposición de los padres cuando la adolescente tenía "autonomía progresiva" suficiente.</div></div>
+    <div class="ltags"><span class="ltag">Art. 24</span><span class="ltag">Art. 25</span><span class="ltag">Art. 26</span><span class="ltag">Ley 26.061</span><span class="ltag">Ley 26.743</span></div>
+  </div></div></div>
+
+  <div class="topic-acc rv"><div class="acc-hdr" onclick="toggleAcc(this.parentElement)"><div class="acc-num">6.2–6.4</div><div class="acc-title">Título Habilitante, Emancipación y Cesación de la Incapacidad</div><button class="acc-toggle">+</button></div><div class="acc-body"><div class="acc-inner">
+    <div class="tc-body"><strong>Menor con título habilitante</strong> (art. 30): plena capacidad para las actividades inherentes a la profesión y para administrar los bienes adquiridos con su trabajo. Ley 26.390: protección del trabajo adolescente. <strong>Mayoría de edad</strong> (art. 25): a los 18 años, capacidad plena de ejercicio, automáticamente. <strong>Emancipación por matrimonio</strong> (art. 27): el menor que contrae matrimonio con dispensa judicial queda emancipado. Efectos: adquiere capacidad de ejercicio excepto para los actos del art. 28. Es irrevocable aunque se disuelva el matrimonio. Nulidad del matrimonio: si es de buena fe, mantiene la emancipación; de mala fe, cesa. <strong>Actos prohibidos al emancipado</strong> (art. 28): no puede disponer de bienes recibidos a título gratuito antes o durante el matrimonio sin autorización judicial. <strong>Actos sujetos a autorización judicial</strong> (art. 29).</div>
+    <div class="ex"><div class="ex-lbl">💍 Ejemplo real</div><div class="ex-txt">Un menor de 17 años obtiene autorización judicial para casarse. Se emancipa. Puede firmar contratos, administrar su sueldo, alquilar un departamento. Pero si quiere vender el campo que heredó de su abuelo antes del matrimonio, necesita autorización judicial (art. 28 CCyCN) — los bienes recibidos gratuitamente están protegidos aunque esté emancipado.</div></div>
+    <div class="ltags"><span class="ltag">Art. 25</span><span class="ltag">Art. 27</span><span class="ltag">Art. 28</span><span class="ltag">Art. 29</span><span class="ltag">Art. 30</span><span class="ltag">Art. 429</span><span class="ltag">Ley 26.390</span></div>
+  </div></div></div>
+
+  <div class="topic-acc rv"><div class="acc-hdr" onclick="toggleAcc(this.parentElement)"><div class="acc-num">6.5–6.7</div><div class="acc-title">Capacidad Restringida, Nuevo Paradigma y Reglas Procesales</div><button class="acc-toggle">+</button></div><div class="acc-body"><div class="acc-inner">
+    <div class="tc-body"><strong>Nuevo paradigma</strong> (arts. 31-50): abandono del modelo de sustitución total de voluntad → modelo de apoyos a la toma de decisiones (CDPD). <strong>Reglas generales</strong> (art. 31): la capacidad se presume; las limitaciones son restrictivas; se favorece la autonomía; la persona participa activamente. <strong>Capacidad restringida</strong> (art. 32, 1° párr.): el juez puede restringir la capacidad para actos determinados — solo esos, los demás los puede ejercer libremente. <strong>Incapacidad</strong> (art. 32, últ. párr.): solo en casos excepcionales de imposibilidad de expresar voluntad; se designa curador. <strong>Sistemas de apoyo</strong> (art. 43). <strong>Reglas procesales</strong> (arts. 33-47): legitimados → competencia → medidas cautelares → entrevista personal obligatoria del juez (art. 35: sin esta, la sentencia es nula) → dictamen interdisciplinario (art. 37) → sentencia → revisión obligatoria a los 3 años (art. 40). <strong>Ley 26.657</strong> (Salud Mental): internación como último recurso; garantías procesales.</div>
+    <div class="ex"><div class="ex-lbl">♿ Ejemplo real — CSJN 2019</div><div class="ex-txt">En "R., M. J." (CSJN, 2019), la Corte anuló una sentencia de interdicción porque el juez no había entrevistado personalmente a la persona cuya capacidad se discutía (art. 35 CCyCN). La entrevista personal es un requisito constitucional — vinculado con el derecho de defensa y la CDPD. Sin ella, todo el proceso es nulo.</div></div>
+    <div class="ltags"><span class="ltag">Art. 31–47</span><span class="ltag">Art. 43</span><span class="ltag">Ley 26.657</span><span class="ltag">CDPD Ley 26.378</span></div>
+  </div></div></div>
+
+  <div class="topic-acc rv"><div class="acc-hdr" onclick="toggleAcc(this.parentElement)"><div class="acc-num">6.8–6.9</div><div class="acc-title">Actos de la Persona Incapaz y El Inhabilitado — Pródigo</div><button class="acc-toggle">+</button></div><div class="acc-body"><div class="acc-inner">
+    <div class="tc-body"><strong>Actos posteriores</strong> a la inscripción de la sentencia: nulos de nulidad relativa (protegen al incapaz). <strong>Actos anteriores</strong>: válidos en principio; pueden anularse si el tercero conocía la incapacidad y medió mala fe (art. 44). <strong>Nulidad pedida en vida</strong> (art. 45). <strong>Nulidad pedida por herederos</strong> (art. 46). <strong>El Inhabilitado — Pródigo</strong> (art. 48): quien por dilapidación de bienes expone a su cónyuge, conviviente o hijos menores o con discapacidad a la pérdida del patrimonio familiar. Requisitos: 1) existencia de esas personas; 2) dilapidación efectiva; 3) exposición al perjuicio. Efectos: designación de un apoyo para actos de disposición (no de administración). Diferencia clave: <em>disposición</em> (transmitir, gravar derechos reales) vs. <em>administración</em> (administrar, cobrar, pagar deudas ordinarias). Concordancia con art. 42 Ley 26.657. Cese (art. 50).</div>
+    <div class="ex"><div class="ex-lbl">💸 Ejemplo real</div><div class="ex-txt">Un hombre hereda $50 millones y en 2 años los gasta en apuestas online, dejando a su esposa e hijos sin sustento. Ellos pueden pedir la inhabilitación por prodigalidad (art. 48 CCyCN). El juez designa un apoyo. El pródigo puede seguir cobrando su sueldo y pagar sus gastos diarios (administración), pero para vender su departamento o hipotecarlo necesita el asentimiento del apoyo (disposición).</div></div>
+    <div class="ltags"><span class="ltag">Art. 44</span><span class="ltag">Art. 45</span><span class="ltag">Art. 46</span><span class="ltag">Art. 48</span><span class="ltag">Art. 49</span><span class="ltag">Art. 50</span></div>
+  </div></div></div>
+</div></div>
+
+<!-- PANEL 7 — UNIDAD 7 -->
+<div class="panel" id="panel7">
+<div class="panel-wrap">
+  <div class="unit-banner rv">
+    <div class="ub-left">
+      <div class="ub-num">07</div>
+      <div class="ub-title">Atributos de la Personalidad: Nombre, Estado y Domicilio</div>
+      <div class="ub-sub">Nombre Civil · Prenombre · Apellido · Seudónimo · Estado Civil · Domicilio</div>
+      <div class="ub-tags"><span class="utag">Módulo IV</span><span class="utag">Arts. 62–78 CCyCN</span><span class="utag">Ley 26.743</span></div>
+    </div>
+    <img class="ub-img" src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&q=80" alt="Identidad y Registro">
+  </div>
+
+  <div class="topic-acc rv"><div class="acc-hdr" onclick="toggleAcc(this.parentElement)"><div class="acc-num">7.1–7.4</div><div class="acc-title">El Nombre — Naturaleza Dual, Prenombre, Apellido y Seudónimo</div><button class="acc-toggle">+</button></div><div class="acc-body"><div class="acc-inner">
+    <div class="tc-body"><strong>Nombre</strong> (art. 62 CCyCN): designación que identifica a la persona en sus relaciones jurídicas. <strong>Naturaleza jurídica dual</strong>: a) Atributo de la personalidad (interés público: el Estado lo regula); b) Derecho subjetivo (interés privado: genera acciones). Elementos: <em>prenombre</em> (nombre de pila) + <em>apellido</em>. <strong>Prenombre</strong> (art. 63): adquirido por los padres al inscribir. Limitaciones (inc. b): no pueden ser extravagantes, ridículos o contrarios a costumbres. <strong>Apellido</strong>: adquisición originaria (nacimiento, arts. 64, 626) y derivada (matrimonio, adopción). Apellido de cónyuges (art. 67): opcional, pueden añadir el del otro. <strong>Principio de inmutabilidad</strong> (art. 69): excepciones legales; cambio sin intervención judicial (Ley 26.743); cambio con intervención judicial. <strong>Protección jurídica del nombre</strong> (art. 71): acción de reclamación e impugnación. <strong>Seudónimo</strong> (arts. 72 y Ley 11.723 art. 3): protección cuando alcanza notoriedad.</div>
+    <div class="ex"><div class="ex-lbl">🏳️‍⚧️ Ejemplo real — Ley 26.743</div><div class="ex-txt">Argentina fue pionera mundial en 2012: la Ley de Identidad de Género permite el cambio de nombre y sexo registral sin cirugía, sin diagnóstico médico y sin intervención judicial — solo con una declaración ante el Registro Civil. En 2021 (Dec. 476/2021) se incorporó la opción "X" para género no binario en el DNI. En 2026, es el estándar regional reconocido por la CIDH.</div></div>
+    <div class="ltags"><span class="ltag">Art. 62–72</span><span class="ltag">Ley 26.743</span><span class="ltag">Dec. 476/2021</span><span class="ltag">Ley 11.723 art. 3</span></div>
+  </div></div></div>
+
+  <div class="topic-acc rv"><div class="acc-hdr" onclick="toggleAcc(this.parentElement)"><div class="acc-num">7.5</div><div class="acc-title">Estado como Atributo — Estado Civil y Posesión de Estado</div><button class="acc-toggle">+</button></div><div class="acc-body"><div class="acc-inner">
+    <div class="tc-body">El <strong>estado</strong> es la posición jurídica que ocupa la persona en la sociedad, la familia y el Estado. Tipos: individual (mayor/menor, capaz/incapaz), familiar (soltero, casado, divorciado, conviviente, pariente), político (nacional, extranjero, ciudadano). Caracteres: necesario, único, inalienable, imprescriptible, indivisible, recíproco. <strong>Estado de familia</strong>: posición en el grupo familiar. <strong>Posesión de estado</strong>: aparentar un estado que se tiene o se cree tener. Elementos: <em>nomen</em> (uso del nombre), <em>tractatus</em> (trato dado: "te trato como hijo/a"), <em>fama</em> (reconocimiento social). Aplicaciones: arts. 197 (matrimonio), 256 (filiación por posesión de estado), 423 (matrimonio putativo), 584 (filiación), 591, 597.</div>
+    <div class="ex"><div class="ex-lbl">👨‍👩‍👧 Ejemplo real</div><div class="ex-txt">Una persona fue criada desde bebé por quienes la trataron como hija: le pusieron su apellido, la presentaban como hija ante el mundo, la inscribieron en la escuela como tal. Al morir el "padre", los hermanos biológicos impugnan la filiación. La justicia valora la posesión de estado (art. 584 CCyCN): si se prueban nomen + tractatus + fama durante años, puede primar sobre la filiación biológica.</div></div>
+    <div class="ltags"><span class="ltag">Art. 197</span><span class="ltag">Art. 256</span><span class="ltag">Art. 423</span><span class="ltag">Art. 584</span><span class="ltag">Art. 591</span><span class="ltag">Art. 597</span></div>
+  </div></div></div>
+
+  <div class="topic-acc rv"><div class="acc-hdr" onclick="toggleAcc(this.parentElement)"><div class="acc-num">7.6–7.8</div><div class="acc-title">Domicilio — Concepto, Clases y Domicilio Especial</div><button class="acc-toggle">+</button></div><div class="acc-body"><div class="acc-inner">
+    <div class="tc-body"><strong>Domicilio</strong> (art. 73): lugar donde la ley presume que la persona está siempre presente. Importancia práctica: competencia judicial, cumplimiento de obligaciones, ley aplicable en DIPr (arts. 2613-2617). <strong>Clases</strong>: <em>General</em> (toda la vida jurídica): a) <strong>Real o voluntario</strong> (art. 73): residencia habitual con ánimo de permanencia. Elementos: corpus + animus. Cambio (art. 77), pérdida, conservación. b) <strong>Legal</strong> (art. 74): impuesto por la ley a ciertas personas (menores: domicilio de progenitores; funcionarios: lugar de funciones; militares: base). Único y excluyente. <em>Especial</em>: a) <strong>Contractual o de elección</strong> (art. 75): elegido por las partes para ese contrato. Subsiste aunque cambie el real. Efectos (art. 78). b) <strong>Procesal</strong>: constituido en las actuaciones judiciales (ante el tribunal). Domicilio de la persona jurídica (arts. 152-153): el estatutario + notificaciones en la sede.</div>
+    <div class="ex"><div class="ex-lbl">🏠 Ejemplo real</div><div class="ex-txt">Una empresa con sede en Buenos Aires constituye domicilio especial en Córdoba en un contrato de distribución. El distribuidor de Córdoba incumple. La empresa puede demandar en Córdoba (domicilio especial pactado, art. 75 CCyCN) aunque la empresa demandante tenga su sede en Buenos Aires. El domicilio especial facilita el acceso a la justicia del lugar de ejecución del contrato.</div></div>
+    <div class="ltags"><span class="ltag">Art. 73</span><span class="ltag">Art. 74</span><span class="ltag">Art. 75</span><span class="ltag">Art. 77</span><span class="ltag">Art. 78</span><span class="ltag">Art. 152</span><span class="ltag">Art. 153</span><span class="ltag">Arts. 2613-2617</span></div>
+  </div></div></div>
+</div></div>
+
+<!-- PANEL 8 — UNIDAD 8 -->
+<div class="panel" id="panel8">
+<div class="panel-wrap">
+  <div class="unit-banner rv">
+    <div class="ub-left">
+      <div class="ub-num">08</div>
+      <div class="ub-title">Desaparición de la Persona — Ausencia y Fallecimiento Presunto</div>
+      <div class="ub-sub">Ausencia Simple · Presunción de Fallecimiento · Ley 24.321 · Fin de la Existencia</div>
+      <div class="ub-tags"><span class="utag">Módulo IV</span><span class="utag">Arts. 79–100 CCyCN</span><span class="utag">Ley 24.321</span></div>
+    </div>
+    <img class="ub-img" src="https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=400&q=80" alt="Ausencia y tiempo">
+  </div>
+
+  <div class="topic-acc rv"><div class="acc-hdr" onclick="toggleAcc(this.parentElement)"><div class="acc-num">8.1</div><div class="acc-title">Ausencia Simple — El Juicio de Simple Ausencia</div><button class="acc-toggle">+</button></div><div class="acc-body"><div class="acc-inner">
+    <div class="tc-body"><strong>Ausencia simple</strong> (art. 79): persona desaparecida de su domicilio con bienes sin administrador, sin que se conozca su paradero. <strong>Fin</strong>: no declarar el fallecimiento sino proteger el patrimonio. <strong>Legitimados</strong> (art. 80): interesados legítimos o Ministerio Público. <strong>Competencia</strong> (art. 81): juez del domicilio. <strong>Procedimiento</strong> (art. 82): citación por edictos. <strong>Sentencia</strong>: designa curador de bienes. <strong>Curador</strong> (art. 83): administra y conserva; no puede disponer sin autorización judicial. <strong>Conclusión</strong> (art. 84): reaparición, muerte o declaración de fallecimiento presunto. <strong>Capacidad del ausente durante el juicio</strong>: puede haber actuado válidamente. <strong>Ley 24.321</strong> (desaparición forzada): régimen especial para personas desaparecidas durante el terrorismo de Estado; la declaración de ausencia por desaparición forzada genera efectos similares al fallecimiento presunto para el cónyuge e hijos.</div>
+    <div class="ex"><div class="ex-lbl">🔍 Ejemplo real — Detenidos-desaparecidos</div><div class="ex-txt">Los familiares de los 30.000 desaparecidos de la dictadura (1976-1983) debieron recurrir a la Ley 24.321 (1994) para obtener declaraciones de ausencia por desaparición forzada. Esto les permitió acceder a pensiones, herencias y seguros de vida sin esperar los plazos ordinarios — un reconocimiento jurídico del crimen de Estado.</div></div>
+    <div class="ltags"><span class="ltag">Arts. 79–84</span><span class="ltag">Ley 24.321</span></div>
+  </div></div></div>
+
+  <div class="topic-acc rv"><div class="acc-hdr" onclick="toggleAcc(this.parentElement)"><div class="acc-num">8.2</div><div class="acc-title">Presunción de Fallecimiento — Casos y Procedimiento</div><button class="acc-toggle">+</button></div><div class="acc-body"><div class="acc-inner">
+    <div class="tc-body"><strong>Caso ordinario</strong> (art. 85): ausencia de 3 años sin noticias. <strong>Casos extraordinarios</strong> (art. 86): a) naufragio, accidente aéreo u otro siniestro: 2 años; b) participación en acción de guerra o catástrofe: 3 años; c) desaparición en vuelo internacional o en alta mar: plazos especiales. <strong>Competencia</strong> (art. 87). <strong>Prueba</strong>: hechos positivos (existencia previa) y negativos (ausencia de noticias). <strong>Citación por edictos</strong> (art. 88): publicación durante 6 meses. <strong>Curador ad-bona</strong>: administra durante el proceso. <strong>Sentencia</strong> (art. 89): fija el día presuntivo del fallecimiento. <strong>Prenotación</strong> (art. 91): 5 años de restricción para disponer de inmuebles y registrables sin autorización judicial. <strong>Reaparición</strong> (art. 92): recupera bienes en el estado actual; el matrimonio no revive si el cónyuge contrajo nuevas nupcias.</div>
+    <div class="ex"><div class="ex-lbl">⚓ Ejemplo real — ARA San Juan</div><div class="ex-txt">El submarino ARA San Juan desapareció el 15/11/2017 con 44 tripulantes. En 2019 se halló el casco a 800m de profundidad. Para los tripulantes cuyos cuerpos no pudieron recuperarse, sus familias tramitaron declaraciones de fallecimiento presunto por naufragio (art. 86 inc. b: 2 años). Esto les permitió acceder a seguros de vida militares, pensiones de viudez y abrir sucesiones.</div></div>
+    <div class="ltags"><span class="ltag">Art. 85</span><span class="ltag">Art. 86</span><span class="ltag">Art. 88</span><span class="ltag">Art. 89</span><span class="ltag">Art. 91</span><span class="ltag">Art. 92</span></div>
+  </div></div></div>
+
+  <div class="topic-acc rv"><div class="acc-hdr" onclick="toggleAcc(this.parentElement)"><div class="acc-num">8.3–8.6</div><div class="acc-title">Efectos de la Sentencia, Conmorientes y Fin de la Existencia</div><button class="acc-toggle">+</button></div><div class="acc-body"><div class="acc-inner">
+    <div class="tc-body"><strong>Efectos de la sentencia</strong>: sobre el matrimonio (art. 435 inc. b: se disuelve), sobre la sociedad conyugal (art. 476), sobre los bienes (art. 92: apertura de sucesión con prenotación de 5 años). <strong>Conmorientes</strong> (art. 95): cuando dos personas mueren en el mismo hecho y no puede determinarse el orden de las muertes, se presume que murieron simultáneamente, sin transmisión de derechos entre ellas. <strong>No encontrar el cadáver</strong> (art. 98): si se acredita la muerte aunque no haya cuerpo — es certeza, no presunción. <strong>Fin de la existencia</strong> (art. 93): la muerte pone fin a la persona. <strong>Muerte natural</strong>: comprobación (art. 94). Leyes especiales: Ley 24.193 (muerte cerebral para trasplantes). Ley 26.472 (muerte digna). <strong>Extinción de relaciones jurídicas por muerte</strong>: regla: se transmiten a herederos. Excepciones: obligaciones intuitu personae, derechos extrapatrimoniales, alimentos futuros (art. 539).</div>
+    <div class="ex"><div class="ex-lbl">✈ Ejemplo real — Conmorientes</div><div class="ex-txt">En el accidente de LAPA 3142 (1999), un matrimonio sin hijos falleció junto con el hermano del marido. Si no puede probarse quién murió primero, son conmorientes (art. 95 CCyCN): se presume que murieron simultáneamente. Los bienes del marido no pasan a la esposa (ni viceversa): cada uno transmite directamente a sus propios herederos. El hermano no hereda nada de la cuñada si son conmorientes.</div></div>
+    <div class="ltags"><span class="ltag">Art. 92</span><span class="ltag">Art. 93</span><span class="ltag">Art. 95</span><span class="ltag">Art. 98</span><span class="ltag">Art. 435 inc. b</span><span class="ltag">Art. 539</span><span class="ltag">Ley 24.193</span><span class="ltag">Ley 26.472</span></div>
+  </div></div></div>
+</div></div>
+
+<!-- PANEL 9 — UNIDAD 9 -->
+<div class="panel" id="panel9">
+<div class="panel-wrap">
+  <div class="unit-banner rv">
+    <div class="ub-left">
+      <div class="ub-num">09</div>
+      <div class="ub-title">Prueba del Estado Civil — Registros, Publicidad e Información</div>
+      <div class="ub-sub">Registro Civil · Partidas · Modificaciones · Nulidad · Publicidad Registral · Fe Pública</div>
+      <div class="ub-tags"><span class="utag">Módulo IV</span><span class="utag">Arts. 96–99 CCyCN</span><span class="utag">Ley 26.413</span></div>
+    </div>
+    <img class="ub-img" src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=400&q=80" alt="Registros y Documentos">
+  </div>
+
+  <div class="topic-acc rv"><div class="acc-hdr" onclick="toggleAcc(this.parentElement)"><div class="acc-num">9.1</div><div class="acc-title">Registro del Estado Civil y Capacidad — Organización y Partidas</div><button class="acc-toggle">+</button></div><div class="acc-body"><div class="acc-inner">
+    <div class="tc-body">Análisis del CCyCN (arts. 96-99) y <strong>Ley 26.413</strong>. Carácter <em>local y público</em>: cada provincia organiza su registro (art. 121 CN) con pautas mínimas del CCyCN. Organización: inscripciones y personas obligadas; notas de referencia; libros obligatorios (nacimiento, matrimonio, defunción, reconocimiento de hijos); libros facultativos; doble registración; conservación; reposición; reconstrucción. <strong>Las partidas</strong>: asientos en libros oficiales. Naturaleza: <em>instrumento público</em> (art. 289 CCyCN) — hacen plena fe hasta ser declaradas falsas. Diferencia entre: <em>testimonio</em> (copia fiel con firma del oficial), <em>certificado</em> (extracto), <em>copia simple</em>, <em>libreta de familia</em>. <strong>Fuerza probatoria</strong>: solo pueden desconocerse mediante acción de redargución de falsedad (art. 296). Diferente valor según otras leyes.</div>
+    <div class="ex"><div class="ex-lbl">📋 Ejemplo real</div><div class="ex-txt">Para tramitar una sucesión, el escribano exige la partida de defunción del causante y las partidas de nacimiento de todos los herederos. Si alguien impugna que la partida está falsificada, no basta con negarlo — debe iniciar judicialmente una "redargución de falsedad" (art. 296 CCyCN). Mientras no haya sentencia que declare la falsedad, la partida sigue siendo válida y hace plena fe.</div></div>
+    <div class="ltags"><span class="ltag">Arts. 96-99</span><span class="ltag">Art. 289</span><span class="ltag">Art. 296</span><span class="ltag">Ley 26.413</span></div>
+  </div></div></div>
+
+  <div class="topic-acc rv"><div class="acc-hdr" onclick="toggleAcc(this.parentElement)"><div class="acc-num">9.2–9.3</div><div class="acc-title">Prueba Supletoria, Modificación e Nulidad de Partidas</div><button class="acc-toggle">+</button></div><div class="acc-body"><div class="acc-inner">
+    <div class="tc-body"><strong>Prueba supletoria</strong>: cuando no existe partida o es imposible obtenerla. Requisitos positivos (acreditar el hecho) y negativos (acreditar la imposibilidad de obtener la partida). Medios: testigos, certificado médico, examen forense (placa ósea para la edad), ADN para filiación. <strong>Determinación de la edad</strong>: el dictamen pericial médico tiene gran valor probatorio. <strong>Principio de inmutabilidad</strong> de las partidas: garantía de seguridad jurídica. <strong>Excepciones — Rectificación administrativa</strong> (art. 96): errores materiales (tipeo, fechas). <strong>Rectificación judicial</strong>: modificaciones sustanciales (filiación, sexo registral, nombre sustantivo). <strong>Nulidad de partidas</strong>: por irregularidad en la forma. <strong>Anulabilidad</strong>: por vicio en el contenido. "Partes esenciales" de la partida. <strong>Rectificación del género e identidad</strong> (Ley 26.743): administrativa, sin cirugía ni diagnóstico médico.</div>
+    <div class="ex"><div class="ex-lbl">🔬 Ejemplo real</div><div class="ex-txt">Un refugiado sirio llega a Argentina sin documentación. Necesita probar su nacimiento para obtener el DNI. El juez admite: declaración de 3 testigos que lo conocen desde niño, examen médico forense (estima entre 28-32 años), y la solicitud de datos al ACNUR. El juez fija la fecha de nacimiento aproximada con esa prueba supletoria (Ley 26.413 + arts. 96-99 CCyCN).</div></div>
+    <div class="ltags"><span class="ltag">Art. 96 CCyCN</span><span class="ltag">Ley 26.413 art. 1</span><span class="ltag">Ley 26.743</span><span class="ltag">Dec. 476/2021</span></div>
+  </div></div></div>
+
+  <div class="topic-acc rv"><div class="acc-hdr" onclick="toggleAcc(this.parentElement)"><div class="acc-num">9.4–9.5</div><div class="acc-title">Publicidad Registral — Tipos de Registros e Inscripciones</div><button class="acc-toggle">+</button></div><div class="acc-body"><div class="acc-inner">
+    <div class="tc-body"><strong>Publicidad registral</strong>: mecanismo que hace cognoscibles a terceros ciertos actos y situaciones jurídicas. Finalidad: seguridad del tráfico jurídico. <strong>Fe pública registral</strong>: presunción de que lo inscripto es verdadero y completo. <strong>Tipos de registros</strong>: <em>Patrimoniales</em>: Registro de la Propiedad Inmueble (Decreto-Ley 17.801), Registro Nacional del Automotor (Ley 22.977), Registro de Aeronaves, Registro Público de Comercio (RPC), Registro de Marcas y Patentes (INPI). <em>No patrimoniales</em>: Registro Civil y Capacidad de las Personas. <strong>Inscripciones declarativas</strong>: el acto ya existe pero la inscripción le da publicidad y oponibilidad a terceros. Ej: transferencia de inmuebles, cesión de créditos. <strong>Inscripciones constitutivas</strong>: el acto nace jurídicamente con la inscripción. Ej: constitución de una SA, hipoteca, prenda con registro, marcas y patentes.</div>
+    <div class="ex"><div class="ex-lbl">🏘 Ejemplo real</div><div class="ex-txt">María vende su departamento a Juan. Firman escritura pública (lunes). Juan no la inscribe en el RPI. El miércoles, María (de mala fe) vende el mismo departamento a Pedro, quien sí lo inscribe inmediatamente. Pedro, de buena fe y a título oneroso, adquiere el dominio aunque Juan tenga la escritura anterior (art. 1893 CCyCN): la inscripción en el RPI es requisito de oponibilidad a terceros para inmuebles.</div></div>
+    <div class="ltags"><span class="ltag">Art. 1892 CCyCN</span><span class="ltag">Art. 1893 CCyCN</span><span class="ltag">Dec.-Ley 17.801 (RPI)</span><span class="ltag">Ley 22.977 (RPA)</span><span class="ltag">Ley 22.362 (Marcas)</span></div>
+  </div></div></div>
+</div></div>
+
+<!-- PANELES 10-17 — PRÓXIMAMENTE -->
+<div class="panel" id="panel10"><div class="panel-wrap"><div class="coming-soon rv"><div class="cs-icon">⚖</div><div class="cs-title">Unidad 10 — En desarrollo</div><div class="cs-sub">Este contenido será incorporado próximamente. El programa se irá ampliando hasta las 17 unidades.</div></div></div></div>
+<div class="panel" id="panel11"><div class="panel-wrap"><div class="coming-soon rv"><div class="cs-icon">📋</div><div class="cs-title">Unidad 11 — En desarrollo</div><div class="cs-sub">Contenido próximamente disponible.</div></div></div></div>
+<div class="panel" id="panel12"><div class="panel-wrap"><div class="coming-soon rv"><div class="cs-icon">📋</div><div class="cs-title">Unidad 12 — En desarrollo</div><div class="cs-sub">Contenido próximamente disponible.</div></div></div></div>
+<div class="panel" id="panel13"><div class="panel-wrap"><div class="coming-soon rv"><div class="cs-icon">📋</div><div class="cs-title">Unidad 13 — En desarrollo</div><div class="cs-sub">Contenido próximamente disponible.</div></div></div></div>
+<div class="panel" id="panel14"><div class="panel-wrap"><div class="coming-soon rv"><div class="cs-icon">📋</div><div class="cs-title">Unidad 14 — En desarrollo</div><div class="cs-sub">Contenido próximamente disponible.</div></div></div></div>
+<div class="panel" id="panel15"><div class="panel-wrap"><div class="coming-soon rv"><div class="cs-icon">📋</div><div class="cs-title">Unidad 15 — En desarrollo</div><div class="cs-sub">Contenido próximamente disponible.</div></div></div></div>
+<div class="panel" id="panel16"><div class="panel-wrap"><div class="coming-soon rv"><div class="cs-icon">📋</div><div class="cs-title">Unidad 16 — En desarrollo</div><div class="cs-sub">Contenido próximamente disponible.</div></div></div></div>
+<div class="panel" id="panel17"><div class="panel-wrap"><div class="coming-soon rv"><div class="cs-icon">📋</div><div class="cs-title">Unidad 17 — En desarrollo</div><div class="cs-sub">Contenido próximamente disponible.</div></div></div></div>
+
+</div><!-- /main-section -->
+
+<!-- ═══════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════ -->
+<footer>
+  <div class="ft-logo">Teoría de la Relación Jurídica y Derecho de la Persona</div>
+  <div class="ft-bar"></div>
+  <div class="ft-links">
+    <a href="https://www.infojus.gob.ar" target="_blank">InfoJus</a>
+    <a href="https://www.csjn.gov.ar" target="_blank">CSJN</a>
+    <a href="https://www.argentina.gob.ar/justicia" target="_blank">Min. Justicia</a>
+    <a href="https://www.corteidh.or.cr" target="_blank">Corte IDH</a>
+    <a href="https://www.ohchr.org" target="_blank">ACNUDH</a>
+  </div>
+  <div class="ft-copy">
+    Programa de Estudio · <strong>Cátedra "B"</strong> · Módulos I–IV · 9 Unidades activas · 17 totales
+  </div>
+  <div class="ft-bar"></div>
+  <div class="ft-copy" style="margin-top:.5rem">
+    <strong>@ReinarhiN</strong> — Todos los derechos reservados · 2026
+  </div>
+  <div class="ft-micro">
+    Código Civil y Comercial de la Nación · Ley 26.994 · República Argentina · Actualizado 2026
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════
+     JAVASCRIPT — LIMPIO Y SIN ERRORES
+═══════════════════════════════════════════════════ -->
+<script>
+'use strict';
+
+/* ── CURSOR ── */
+var dot  = document.getElementById('cdot');
+var ring = document.getElementById('cring');
+document.addEventListener('mousemove', function(e){
+  dot.style.left  = e.clientX + 'px';
+  dot.style.top   = e.clientY + 'px';
+  ring.style.left = e.clientX + 'px';
+  ring.style.top  = e.clientY + 'px';
+});
+document.querySelectorAll('a,button,.topic-acc,.prog-card,.info-box').forEach(function(el){
+  el.addEventListener('mouseenter', function(){ document.body.classList.add('on-link'); });
+  el.addEventListener('mouseleave', function(){ document.body.classList.remove('on-link'); });
+});
+
+/* ── PARTICLES ── */
+(function(){
+  var c = document.getElementById('pts');
+  for(var i=0;i<25;i++){
+    var p = document.createElement('div');
+    p.className = 'p';
+    var sz = Math.random()*2.5+.8;
+    p.style.cssText =
+      'left:'+Math.round(Math.random()*100)+'%;'+
+      'width:'+sz+'px;height:'+sz+'px;'+
+      'animation-duration:'+(Math.random()*18+10).toFixed(1)+'s;'+
+      'animation-delay:'+(Math.random()*14).toFixed(1)+'s;';
+    c.appendChild(p);
+  }
+})();
+
+/* ── PROGRESS BAR ── */
+var pgbar = document.getElementById('pgbar');
+window.addEventListener('scroll', function(){
+  var pct = window.scrollY / Math.max(document.body.scrollHeight - window.innerHeight, 1) * 100;
+  pgbar.style.width = pct + '%';
+  document.getElementById('topbar').classList.toggle('solid', window.scrollY > 50);
+}, {passive: true});
+
+/* ── TABS ── */
+var TOTAL_TABS = 18;
+var currentTab = 0;
+
+function switchTab(n){
+  // Hide all panels
+  for(var i=0;i<TOTAL_TABS;i++){
+    var pan = document.getElementById('panel'+i);
+    var tab = document.getElementById('tab'+i);
+    var tbp = document.getElementById('tbp'+i);
+    if(pan) pan.classList.remove('active');
+    if(tab) tab.classList.remove('active');
+    if(tbp) tbp.classList.remove('cur');
+  }
+  // Show selected
+  var target = document.getElementById('panel'+n);
+  var tabBtn = document.getElementById('tab'+n);
+  var topBtn = document.getElementById('tbp'+n);
+  if(target) target.classList.add('active');
+  if(tabBtn) tabBtn.classList.add('active');
+  if(topBtn) topBtn.classList.add('cur');
+  currentTab = n;
+  // Scroll tabs into view
+  if(tabBtn) tabBtn.scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'});
+  // Trigger reveal
+  setTimeout(doReveal, 60);
+  // Scroll to main section (not on first load)
+  if(n > 0){
+    var ms = document.getElementById('main-section');
+    if(ms) ms.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+}
+
+/* ── ACCORDION ── */
+function toggleAcc(el){
+  el.classList.toggle('open');
+}
+
+/* ── REVEAL ON SCROLL ── */
+function doReveal(){
+  var els = document.querySelectorAll('.rv:not(.in)');
+  if(!els.length) return;
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry, i){
+      if(entry.isIntersecting){
+        setTimeout(function(){ entry.target.classList.add('in'); }, i * 65);
+        obs.unobserve(entry.target);
+      }
+    });
+  },{threshold:0.07});
+  els.forEach(function(el){ obs.observe(el); });
+}
+doReveal();
+
+/* ── SEARCH ── */
+var srch   = document.getElementById('srch');
+var srclear = document.getElementById('srclear');
+var srchInfo = document.getElementById('srch-info');
+
+function doSearch(q){
+  var qq = q.toLowerCase().trim();
+  srclear.classList.toggle('show', qq.length > 0);
+
+  // Show all panels first so we can search them
+  var allCards = document.querySelectorAll('.topic-acc');
+  var found = 0;
+
+  allCards.forEach(function(card){
+    var match = !qq || card.textContent.toLowerCase().indexOf(qq) !== -1;
+    card.style.display = match ? '' : 'none';
+    if(match && qq){
+      found++;
+      // Open matched accordions
+      card.classList.add('open');
+      // Make parent panel visible
+      var panel = card.closest('.panel');
+      if(panel && !panel.classList.contains('active')){
+        // Activate this panel
+        var pid = panel.id.replace('panel','');
+        switchTab(parseInt(pid, 10));
+      }
+    }
+  });
+
+  if(qq){
+    srchInfo.textContent = found + ' tema(s) encontrado(s) para "' + q + '"';
+  } else {
+    srchInfo.textContent = '';
+    allCards.forEach(function(c){ c.style.display = ''; });
+  }
+}
+
+function clearSearch(){
+  srch.value = '';
+  doSearch('');
+  srch.focus();
+}
+
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape') clearSearch();
+});
+
+/* ── OPEN FIRST ACCORDION IN VISIBLE PANEL BY DEFAULT ── */
+document.querySelectorAll('.panel').forEach(function(panel){
+  var first = panel.querySelector('.topic-acc');
+  if(first) first.classList.add('open');
+});
+</script>
+</body>
+</html>
